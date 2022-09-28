@@ -1,16 +1,12 @@
-/* eslint-disable no-plusplus */
-function getShipCoordinates(array, length, align) {
-  const shipCoordinates = [array];
-  if (align === "X") {
-    for (let i = 1; i < length; i++) {
-      shipCoordinates.push([array[0], array[1] + i]);
-    }
-  } else {
-    for (let i = 1; i < length; i++) {
-      shipCoordinates.push([array[0] + i, array[1]]);
-    }
-  }
-  return shipCoordinates;
+const getShipCoordinates = require("./getShipCoordinates");
+const hit = require("./hit");
+const sink = require("./sink");
+
+function Ship(array, length, align, hitCoord) {
+  const shipCoord = getShipCoordinates(array, length, align);
+  const isHit = hit(shipCoord, hitCoord);
+  const isSunk = sink(isHit);
+  return isSunk;
 }
 
-module.exports = getShipCoordinates;
+module.exports = Ship;
