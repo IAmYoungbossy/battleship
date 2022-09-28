@@ -6,7 +6,7 @@ function Ship(array, length, align, hitCoord) {
   const shipCoord = getShipCoordinates(array, length, align);
   const isHit = hit(shipCoord, hitCoord);
   const isSunk = sink(isHit);
-  return isSunk;
+  return { shipCoord, isSunk };
 }
 
 module.exports = Ship;
