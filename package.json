@@ -4,7 +4,7 @@
   "description": "Build a battleship web app game using the Test Driven Development (TDD) approach.",
   "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "watch": "webpack --watch",
     "start": "webpack serve --open",
     "build": "webpack"
