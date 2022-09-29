@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+}
+
+.board-container {
+  display: flex;
+  width: min-content;
+  margin: auto;
+  gap: 125px;
+}
+
+.gameboard {
+  padding: 1px;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 1px;
+  width: 450px;
+  height: 450px;
+  border: 1px solid black;
+}
+
+.grid {
+  border: 1px solid black;
+}
+
+.grid:hover {
+  background-color: brown;
+}
