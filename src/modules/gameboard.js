@@ -35,7 +35,7 @@ function Gameboard() {
   ship2.forEach((grid) => {
     board[grid[0]][grid[1]] = 1;
   });
-  // board[0][0] = 1;
+
   return board;
 }
 
