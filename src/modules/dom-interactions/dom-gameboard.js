@@ -7,7 +7,10 @@ function createGameboard() {
   function grids() {
     const gameboard = createDomElement("div", { class: "gameboard" });
     for (let i = 0; i < 100; i += 1) {
-      const grid = createDomElement("div", { class: "grid" });
+      const grid = createDomElement("div", {
+        class: "grid",
+        "data-index-number": `${i}`,
+      });
       gameboard.appendChild(grid);
     }
     return { gameboard };
