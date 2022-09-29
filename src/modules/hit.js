@@ -1,13 +1,14 @@
 /* eslint-disable nonblock-statement-body-position */
 /* eslint-disable curly */
-function hit(shipCoord, hitCoord) {
+function hit(shipCoord, receiveAttack) {
   const coordinates = [...shipCoord];
 
   coordinates.forEach((coord, index) => {
-    hitCoord.forEach((hitPoint) => {
-      if (coord[0] === hitPoint[0] && coord[1] === hitPoint[1])
-        coordinates.splice(index, 1);
-    });
+    if (receiveAttack)
+      receiveAttack.forEach((attack) => {
+        if (coord[0] === attack[0] && coord[1] === attack[1])
+          coordinates.splice(index, 1);
+      });
   });
 
   return coordinates;
