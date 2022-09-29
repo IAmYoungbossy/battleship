@@ -5,20 +5,22 @@ function createGameboard() {
   const boardContainer = createDomElement("div", { class: "board-container" });
 
   function grids() {
-    const gameboard = createDomElement("div", { class: "gameboard" });
+    const square = createDomElement("div", { class: "square" });
     for (let i = 0; i < 100; i += 1) {
       const grid = createDomElement("div", {
         class: "grid",
         "data-index-number": `${i}`,
       });
-      gameboard.appendChild(grid);
+      square.appendChild(grid);
     }
-    return { gameboard };
+    return { square };
   }
 
-  boardContainer.appendChild(grids().gameboard);
-  boardContainer.appendChild(grids().gameboard);
+  boardContainer.appendChild(grids().square);
+  boardContainer.appendChild(grids().square);
   body.appendChild(boardContainer);
+
+  // Gameboard();
 }
 
 module.exports = createGameboard;

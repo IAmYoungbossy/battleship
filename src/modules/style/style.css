@@ -15,7 +15,7 @@ h1 {
   gap: 125px;
 }
 
-.gameboard {
+.square {
   padding: 1px;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
