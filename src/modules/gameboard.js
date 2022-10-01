@@ -1,11 +1,9 @@
 /* eslint-disable no-plusplus */
-const create2DArray = require("./2d-array");
 const Ship = require("./ship");
 const checkValidMove = require("./valid-move");
 
-function Gameboard(x, y, length, align, receiveAttack) {
+function Gameboard(x, y, length, align, board, receiveAttack) {
   const ship = Ship([x, y], length, align, receiveAttack).shipCoord;
-  const board = create2DArray(10);
   const shipCoords = checkValidMove(ship, board);
   const arrayCoord = [];
 
