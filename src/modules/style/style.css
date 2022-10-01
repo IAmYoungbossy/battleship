@@ -32,3 +32,7 @@ h1 {
 .grid:hover {
   background-color: brown;
 }
+
+.ship {
+  background-color: grey;
+}

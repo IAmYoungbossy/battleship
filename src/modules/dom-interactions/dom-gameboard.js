@@ -23,17 +23,42 @@ function createGameboard() {
 }
 
 function showShipsOnBoard() {
-  const header = document.querySelector("h1");
   const squares = document.querySelectorAll(".grid");
-
-  const shipCoords = Gameboard(4, 2).flat();
+  const header = document.querySelector("h1");
+  const arr = [];
+  let shipLenght;
+  let align = "X";
+  let counter = 6;
+  let shipPointer = 0;
 
   header.addEventListener("click", () => {
-    squares.forEach((square, index) => {
-      shipCoords.forEach((point) => {
-        if (index === +point) {
-          square.style.cssText = "background-color: grey;";
-        }
+    align = align === "X" ? "Y" : "X";
+  });
+  squares.forEach((square, index) => {
+    square.addEventListener("click", () => {
+      if (counter < 2) return;
+
+      for (let i = 0; i < 1; i += 1) {
+        counter -= 1;
+
+        if (arr.length >= 3) arr.push(counter + 1);
+        else arr.push(counter);
+
+        shipLenght = arr[shipPointer];
+        shipPointer += 1;
+      }
+
+      const coord = `${index}`.split("");
+      if (coord.length === 1) coord.unshift(0);
+
+      squares.forEach((item, index2) => {
+        Gameboard(+coord[0], +coord[1], shipLenght, align)
+          .flat()
+          .forEach((point) => {
+            if (index2 === +point) {
+              item.classList.add("ship");
+            }
+          });
       });
     });
   });
