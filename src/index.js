@@ -1,8 +1,6 @@
+import createGameboard from "./modules/dom-interactions/dom-gameboard";
+import showShipsOnBoard from "./modules/place-ship";
 import "./modules/style/style.css";
 
-const myModule = require("./modules/dom-interactions/dom-gameboard");
-const Ship = require("./modules/ship");
-
-myModule.createGameboard();
-myModule.showShipsOnBoard();
-console.log(Ship([1, 2], 5, "Y", [1, 2]));
+createGameboard();
+showShipsOnBoard();
