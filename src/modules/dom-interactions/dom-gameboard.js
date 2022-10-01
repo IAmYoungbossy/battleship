@@ -7,10 +7,7 @@ function createGameboard() {
   function grids() {
     const square = createDomElement("div", { class: "square" });
     for (let i = 0; i < 100; i += 1) {
-      const grid = createDomElement("div", {
-        class: "grid",
-        "data-index-number": `${i}`,
-      });
+      const grid = createDomElement("div", { class: "grid" });
       square.appendChild(grid);
     }
     return { square };
