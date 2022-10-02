@@ -3,7 +3,7 @@ const Gameboard = require("../gameboard");
 
 function showRandomShipsOnBoard() {
   const board = create2DArray(10);
-  const align = "X";
+  const alignArr = ["X", "Y"];
   const Arr = [];
   let shipLenght = 0;
 
@@ -14,13 +14,17 @@ function showRandomShipsOnBoard() {
     if (Arr.length === 3) shipLenght = 3;
     if (Arr.length === 4) shipLenght = 2;
 
+    const alignIndex = Math.floor(Math.random() * alignArr.length);
+    const align = alignArr[alignIndex];
+
     const index = Math.floor(Math.random() * 100);
     const coord = `${index}`.split("");
     if (coord.length === 1) coord.unshift("0");
     const shipCoord = Gameboard(+coord[0], +coord[1], shipLenght, align, board);
     if (shipCoord.length !== 0) Arr.push(shipCoord);
   }
+
   return board;
 }
-console.table(showRandomShipsOnBoard());
+
 module.exports = showRandomShipsOnBoard;
