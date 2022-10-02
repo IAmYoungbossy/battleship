@@ -27,4 +27,12 @@ function showRandomShipsOnBoard() {
   return board;
 }
 
-module.exports = showRandomShipsOnBoard;
+function showShipsRandomly() {
+  const squares = document.querySelectorAll(".player2-grid");
+  const board = showRandomShipsOnBoard();
+  board.flat().forEach((item, index2) => {
+    if (item === 1) squares[index2].classList.add("ship");
+  });
+}
+
+module.exports = showShipsRandomly;
