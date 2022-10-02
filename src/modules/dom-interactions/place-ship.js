@@ -3,7 +3,7 @@ const Gameboard = require("../gameboard");
 
 function showShipsOnBoard() {
   const header = document.querySelector("h1");
-  const squares = document.querySelectorAll(".grid");
+  const squares = document.querySelectorAll(".player1-grid");
   const board = create2DArray(10);
   let align = "X";
   const Arr = [];
@@ -12,6 +12,7 @@ function showShipsOnBoard() {
   const shipAlignment = () => {
     align = align === "X" ? "Y" : "X";
   };
+  header.addEventListener("click", shipAlignment);
 
   const shipBackground = (item, index2) => {
     if (item === 1) squares[index2].classList.add("ship");
@@ -33,7 +34,6 @@ function showShipsOnBoard() {
       setShipLength();
       const coord = `${index}`.split("");
       if (coord.length === 1) coord.unshift("0");
-
       const shipCoord = Gameboard(
         +coord[0],
         +coord[1],
@@ -44,9 +44,9 @@ function showShipsOnBoard() {
       if (shipCoord.length !== 0) Arr.push(shipCoord);
       board.flat().forEach(shipBackground);
     };
+
     square.addEventListener("click", placeShipHandler);
   };
-  header.addEventListener("click", shipAlignment);
   squares.forEach(placeShip);
 }
 

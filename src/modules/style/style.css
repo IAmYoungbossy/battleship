@@ -15,7 +15,8 @@ h1 {
   gap: 125px;
 }
 
-.square {
+.player1-board,
+.player2-board {
   padding: 1px;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
@@ -25,11 +26,13 @@ h1 {
   border: 1px solid black;
 }
 
-.grid {
+.player1-grid,
+.player2-grid {
   border: 1px solid black;
 }
 
-.grid:hover {
+.player1-grid:hover,
+.player2-grid:hover {
   background-color: brown;
 }
 
