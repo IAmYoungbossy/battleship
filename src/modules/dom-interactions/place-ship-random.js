@@ -1,5 +1,5 @@
 const create2DArray = require("../2d-array");
-const Gameboard = require("../gameboard");
+const shipAxis = require("../gameboard");
 
 function showRandomShipsOnBoard() {
   const board = create2DArray(10);
@@ -20,7 +20,7 @@ function showRandomShipsOnBoard() {
     const index = Math.floor(Math.random() * 100);
     const coord = `${index}`.split("");
     if (coord.length === 1) coord.unshift("0");
-    const shipCoord = Gameboard(+coord[0], +coord[1], shipLenght, align, board);
+    const shipCoord = shipAxis(+coord[0], +coord[1], shipLenght, align, board);
     if (shipCoord.length !== 0) Arr.push(shipCoord);
   }
 

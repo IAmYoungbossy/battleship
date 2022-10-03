@@ -2,7 +2,7 @@
 const Ship = require("./ship");
 const checkValidMove = require("./valid-move");
 
-function Gameboard(x, y, length, align, board, receiveAttack) {
+function shipAxis(x, y, length, align, board, receiveAttack) {
   const ship = Ship([x, y], length, align, receiveAttack).shipCoord;
   const shipCoords = checkValidMove(ship, board);
   const arrayCoord = [];
@@ -15,4 +15,4 @@ function Gameboard(x, y, length, align, board, receiveAttack) {
   return arrayCoord;
 }
 
-module.exports = Gameboard;
+module.exports = shipAxis;
