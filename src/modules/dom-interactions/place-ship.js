@@ -6,10 +6,7 @@ const shipAxis = require("../gameboard");
 function showShipsOnBoard() {
   const header = document.querySelector("h1");
   const squares = document.querySelectorAll(".player1-grid");
-  const alignShip = () => (align = align === "X" ? "Y" : "X");
-  const { board, positionShip } = Gameboard();
-  const Arr = [];
-  let align = "X";
+  const { board, positionShip, alignShip } = Gameboard();
 
   header.addEventListener("click", alignShip);
   squares.forEach(addListener);
@@ -17,20 +14,25 @@ function showShipsOnBoard() {
   function addListener(square, index) {
     square.addEventListener(
       "click",
-      addBackgroundColor.bind(null, index, Arr, align, board, squares),
+      addBackgroundColor.bind(null, index, positionShip, board, squares),
     );
-  }
-  function addBackgroundColor(index) {
-    positionShip(index, Arr, align);
-    board.flat().forEach((item, index2) => {
-      if (item === 1) squares[index2].classList.add("ship");
-    });
   }
 }
 
+function addBackgroundColor(index, positionShip, board, squares) {
+  positionShip(index);
+  board.flat().forEach((item, index2) => {
+    if (item === 1) squares[index2].classList.add("ship");
+  });
+}
+
 function Gameboard() {
+  const alignShip = () => (align = align === "X" ? "Y" : "X");
   const board = create2DArray(10);
-  const positionShip = (index, Arr, align) => {
+  let align = "X";
+  const Arr = [];
+
+  const positionShip = (index) => {
     let shipLenght;
     if (Arr.length > 4) return;
     if (Arr.length === 0) shipLenght = 5;
@@ -41,8 +43,8 @@ function Gameboard() {
     const axis = `${index}`.split("");
     if (axis.length === 1) axis.unshift("0");
     const coords = shipAxis(+axis[0], +axis[1], shipLenght, align, board);
-    if (coords.length !== 0) Arr.push(coords);
+    if (coords.length !== 0) Arr.push({ shipLenght, axis, align });
   };
-  return { board, positionShip };
+  return { board, positionShip, alignShip };
 }
 module.exports = showShipsOnBoard;
