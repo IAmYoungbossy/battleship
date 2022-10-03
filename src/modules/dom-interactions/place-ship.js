@@ -4,50 +4,30 @@ const Gameboard = require("../gameboard");
 function showShipsOnBoard() {
   const header = document.querySelector("h1");
   const squares = document.querySelectorAll(".player1-grid");
+  const alignShip = () => (align = align === "X" ? "Y" : "X");
   const board = create2DArray(10);
-  let align = "X";
   const Arr = [];
+  let align = "X";
   let shipLenght;
 
-  const shipAlignment = () => {
-    align = align === "X" ? "Y" : "X";
-  };
-  header.addEventListener("click", shipAlignment);
-
-  const shipBackground = (item, index2) => {
-    if (item === 1) squares[index2].classList.add("ship");
-  };
-
-  const setShipLength = () => {
-    for (let i = 0; i < 1; i += 1) {
+  header.addEventListener("click", alignShip);
+  squares.forEach((square, index) => {
+    square.addEventListener("click", () => {
+      if (Arr.length > 4) return;
       if (Arr.length === 0) shipLenght = 5;
       if (Arr.length === 1) shipLenght = 4;
       if (Arr.length === 2) shipLenght = 3;
       if (Arr.length === 3) shipLenght = 3;
       if (Arr.length === 4) shipLenght = 2;
-    }
-  };
-
-  const placeShip = (square, index) => {
-    const placeShipHandler = () => {
-      if (Arr.length > 4) return;
-      setShipLength();
-      const coord = `${index}`.split("");
-      if (coord.length === 1) coord.unshift("0");
-      const shipCoord = Gameboard(
-        +coord[0],
-        +coord[1],
-        shipLenght,
-        align,
-        board,
-      );
-      if (shipCoord.length !== 0) Arr.push(shipCoord);
-      board.flat().forEach(shipBackground);
-    };
-
-    square.addEventListener("click", placeShipHandler);
-  };
-  squares.forEach(placeShip);
+      const axis = `${index}`.split("");
+      if (axis.length === 1) axis.unshift("0");
+      const coords = Gameboard(+axis[0], +axis[1], shipLenght, align, board);
+      if (coords.length !== 0) Arr.push(coords);
+      board.flat().forEach((item, index2) => {
+        if (item === 1) squares[index2].classList.add("ship");
+      });
+    });
+  });
 }
 
 module.exports = showShipsOnBoard;
