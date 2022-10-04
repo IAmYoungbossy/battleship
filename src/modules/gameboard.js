@@ -6,8 +6,8 @@ const shipAxis = require("./shp-axis");
 function Gameboard() {
   const alignShip = () => (align = align === "X" ? "Y" : "X");
   const board = create2DArray(10);
-  let align = "X";
   const Arr = [];
+  let align = "X";
 
   const positionShip = (index) => {
     let shipLenght;
@@ -20,9 +20,26 @@ function Gameboard() {
     const axis = `${index}`.split("");
     if (axis.length === 1) axis.unshift("0");
     const coords = shipAxis(+axis[0], +axis[1], shipLenght, align, board);
-    if (coords.length !== 0) Arr.push({ shipLenght, axis, align });
+    if (coords.length !== 0) {
+      Arr.push(coords);
+    }
   };
-  return { board, positionShip, alignShip };
+
+  const receiveAttack = (attack) => {
+    const [ship5, ship4, ship3, ship2, ship1] = Arr;
+    [ship5, ship4, ship3, ship2, ship1].forEach((ship) => {
+      ship.forEach((coordinate, index) => {
+        if (attack === coordinate) ship.splice(index, 1);
+      });
+    });
+  };
+
+  return {
+    board,
+    positionShip,
+    alignShip,
+    receiveAttack,
+  };
 }
 
 module.exports = Gameboard;
