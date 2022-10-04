@@ -1,5 +1,5 @@
 const create2DArray = require("../2d-array");
-const shipAxis = require("../gameboard");
+const shipAxis = require("../shp-axis");
 
 function showRandomShipsOnBoard() {
   const board = create2DArray(10);
