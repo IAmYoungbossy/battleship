@@ -36,11 +36,23 @@ function Gameboard() {
     return hitCoord;
   };
 
+  const isSunk = () => {
+    const [ship5, ship4, ship3, ship2, ship1] = Arr;
+    return {
+      ship5,
+      ship4,
+      ship3,
+      ship2,
+      ship1,
+    };
+  };
+
   return {
     board,
     positionShip,
     alignShip,
     isHit,
+    isSunk,
   };
 }
 
