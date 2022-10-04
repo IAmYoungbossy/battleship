@@ -25,20 +25,22 @@ function Gameboard() {
     }
   };
 
-  const receiveAttack = (attack) => {
+  const isHit = (attack) => {
+    let hitCoord;
     const [ship5, ship4, ship3, ship2, ship1] = Arr;
     [ship5, ship4, ship3, ship2, ship1].forEach((ship) => {
       ship.forEach((coordinate, index) => {
-        if (attack === coordinate) ship.splice(index, 1);
+        if (attack === coordinate) hitCoord = ship.splice(index, 1);
       });
     });
+    return hitCoord;
   };
 
   return {
     board,
     positionShip,
     alignShip,
-    receiveAttack,
+    isHit,
   };
 }
 
