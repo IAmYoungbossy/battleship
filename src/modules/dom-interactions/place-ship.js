@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 const Gameboard = require("../gameboard");
 
+/** Gets ships coordinates from Gameboard and display in DOM */
 function showShipsOnBoard() {
   const header = document.querySelector("h1");
   const squares = document.querySelectorAll(".player1-grid");
@@ -14,13 +15,12 @@ function showShipsOnBoard() {
       addBackgroundColor.bind(null, index, positionShip, board, squares),
     );
   };
-
   header.addEventListener("click", alignShip);
   squares.forEach(addListener);
-
   return { receiveAttack, Arr, allShipsSunk };
 }
 
+/** Adds background colour for missed shots */
 function addBackgroundColor(index, positionShip, board, squares) {
   positionShip(index);
   board.flat().forEach((item, index2) => {
