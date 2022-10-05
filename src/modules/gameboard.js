@@ -1,15 +1,14 @@
-/* eslint-disable no-use-before-define */
 /* eslint-disable no-return-assign */
 const create2DArray = require("./2d-array");
 const Ship = require("./ship");
 const shipAxis = require("./shp-axis");
 
 function Gameboard() {
-  const alignShip = () => (align = align === "X" ? "Y" : "X");
-  const board = create2DArray(10);
   const Arr = [];
-  const shipArr = [];
   let align = "X";
+  const shipArr = [];
+  const board = create2DArray(10);
+  const alignShip = () => (align = align === "X" ? "Y" : "X");
 
   const positionShip = (index) => {
     let shipLenght;
@@ -86,13 +85,25 @@ function Gameboard() {
     };
   };
 
+  const allShipsSunk = () => {
+    const [ship5, ship4, ship3, ship2, ship1] = Arr.flat();
+    if (ship5.length === 0
+    && ship4.length === 0
+    && ship3.length === 0
+    && ship2.length === 0
+    && ship1.length === 0
+    ) return true;
+    return false;
+  };
+
   return {
-    board,
-    positionShip,
-    alignShip,
-    receiveAttack,
     Arr,
+    board,
     shipArr,
+    alignShip,
+    allShipsSunk,
+    positionShip,
+    receiveAttack,
   };
 }
 

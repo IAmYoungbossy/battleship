@@ -4,7 +4,7 @@ const showShipsOnBoard = require("./place-ship");
 
 function shot() {
   const playerBoard = document.querySelectorAll(".player1-grid");
-  const { receiveAttack, Arr } = showShipsOnBoard();
+  const { receiveAttack, Arr, allShipsSunk } = showShipsOnBoard();
   let count = 0;
 
   playerBoard.forEach((grid, index) => {
@@ -27,6 +27,7 @@ function shot() {
           ship1Coord,
         } = receiveAttack(axis);
 
+        if (allShipsSunk()) console.log("Works");
         grid.style.background = "purple";
         if (hitCoord) grid.style.background = "red";
         isSunkShip(ship5Sunk, ship5Coord, playerBoard);
