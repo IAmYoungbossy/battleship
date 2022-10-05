@@ -1,12 +1,15 @@
+/* eslint-disable no-restricted-syntax */
 const getShipCoordinates = require("./getShipCoordinates");
-const hit = require("./hit");
-const sink = require("./sink");
 
-function Ship(array, length, align, receiveAttack) {
+function Ship(array, length, align) {
   const shipCoord = getShipCoordinates(array, length, align);
   if (!Array.isArray(shipCoord) && !shipCoord.length > 0) return false;
-  const isHit = hit(shipCoord, receiveAttack);
-  const isSunk = sink(isHit);
+  const isSunk = (coord, hitCoord) => {
+    for (const XY of shipCoord) {
+      if (hitCoord.join("") === XY.join("")) if (coord.length <= 0) return true;
+    }
+    return coord.length;
+  };
   return { shipCoord, isSunk };
 }
 

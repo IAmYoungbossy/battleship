@@ -1,5 +1,5 @@
-function sink(isHit) {
-  if (isHit.length === 0) return true;
+function sink(receiveAttack) {
+  if (receiveAttack <= 0) return true;
   return false;
 }
 
