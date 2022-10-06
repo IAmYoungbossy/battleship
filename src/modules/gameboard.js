@@ -1,9 +1,8 @@
 /* eslint-disable no-return-assign */
 const create2DArray = require("./2d-array");
 const Ship = require("./ship");
-const shipAxis = require("./shp-axis");
 
-function Gameboard() {
+function Gameboard(placePlayerShips) {
   const Arr = [];
   let align = "X";
   const shipArr = [];
@@ -11,20 +10,7 @@ function Gameboard() {
   const alignShip = () => (align = align === "X" ? "Y" : "X");
 
   const positionShip = (index) => {
-    let shipLenght;
-    if (Arr.length > 4) return;
-    if (Arr.length === 0) shipLenght = 5;
-    if (Arr.length === 1) shipLenght = 4;
-    if (Arr.length === 2) shipLenght = 3;
-    if (Arr.length === 3) shipLenght = 3;
-    if (Arr.length === 4) shipLenght = 2;
-    const axis = `${index}`.split("");
-    if (axis.length === 1) axis.unshift("0");
-    const coords = shipAxis(+axis[0], +axis[1], shipLenght, align, board);
-    if (coords.length !== 0) {
-      Arr.push(coords);
-      shipArr.push({ XY: [+axis[0], +axis[1]], align, shipLenght });
-    }
+    placePlayerShips(Arr, index, align, board, shipArr);
   };
 
   const receiveAttack = (attack) => {
