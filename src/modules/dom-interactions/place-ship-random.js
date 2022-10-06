@@ -1,35 +1,10 @@
-const create2DArray = require("../2d-array");
-const shipAxis = require("../shp-axis");
-
-function showRandomShipsOnBoard() {
-  const board = create2DArray(10);
-  const alignArr = ["X", "Y"];
-  const Arr = [];
-  let shipLenght = 0;
-
-  while (Arr.length < 5) {
-    if (Arr.length === 0) shipLenght = 5;
-    if (Arr.length === 1) shipLenght = 4;
-    if (Arr.length === 2) shipLenght = 3;
-    if (Arr.length === 3) shipLenght = 3;
-    if (Arr.length === 4) shipLenght = 2;
-
-    const alignIndex = Math.floor(Math.random() * alignArr.length);
-    const align = alignArr[alignIndex];
-
-    const index = Math.floor(Math.random() * 100);
-    const coord = `${index}`.split("");
-    if (coord.length === 1) coord.unshift("0");
-    const shipCoord = shipAxis(+coord[0], +coord[1], shipLenght, align, board);
-    if (shipCoord.length !== 0) Arr.push(shipCoord);
-  }
-
-  return board;
-}
+const Gameboard = require("../gameboard");
+const placeShips = require("../placeShipsOnBoard");
 
 function showShipsRandomly() {
   const squares = document.querySelectorAll(".player2-grid");
-  const board = showRandomShipsOnBoard();
+  const { board, positionShip } = Gameboard(placeShips.placeComputerShips);
+  positionShip();
   board.flat().forEach((item, index2) => {
     if (item === 1) squares[index2].classList.add("ship");
   });

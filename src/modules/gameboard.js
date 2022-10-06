@@ -10,7 +10,7 @@ function Gameboard(placePlayerShips) {
   const alignShip = () => (align = align === "X" ? "Y" : "X");
 
   const positionShip = (index) => {
-    placePlayerShips(Arr, index, align, board, shipArr);
+    placePlayerShips(Arr, board, shipArr, index, align);
   };
 
   const receiveAttack = (attack) => {

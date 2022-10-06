@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 const Gameboard = require("../gameboard");
-const placePlayerShips = require("../placeShipsOnBoard");
+const placeShips = require("../placeShipsOnBoard");
 
 /** Gets ships coordinates from Gameboard and display in DOM */
 function showShipsOnBoard() {
@@ -8,7 +8,7 @@ function showShipsOnBoard() {
   const squares = document.querySelectorAll(".player1-grid");
   const {
     board, positionShip, alignShip, receiveAttack, Arr, allShipsSunk,
-  } = Gameboard(placePlayerShips);
+  } = Gameboard(placeShips.placePlayerShips);
 
   const addListener = (square, index) => {
     square.addEventListener(
