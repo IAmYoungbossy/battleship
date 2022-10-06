@@ -7,9 +7,9 @@ function showShipsRandomly() {
     board, positionShip, receiveAttack, Arr, allShipsSunk,
   } = Gameboard(placeShips.placeComputerShips);
   positionShip();
-  board.flat().forEach((item, index2) => {
-    if (item === 1) squares[index2].classList.add("ship");
-  });
+  // board.flat().forEach((item, index2) => {
+  //   if (item === 1) squares[index2].classList.add("ship");
+  // });
   return { receiveAttack, Arr, allShipsSunk };
 }
 

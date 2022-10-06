@@ -39,3 +39,7 @@ h1 {
 .ship {
   background-color: grey;
 }
+
+.shots {
+  background-color: rgb(159, 46, 211);
+}

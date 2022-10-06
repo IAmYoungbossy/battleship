@@ -27,7 +27,7 @@ function shots(showShips, className) {
     } = receiveAttack(axis);
 
     if (allShipsSunk()) console.log("Works");
-    grid.style.background = "purple";
+    grid.classList.add("shots");
     if (hitCoord) grid.style.background = "red";
     isSunkShip(ship5Sunk, ship5Coord, playerBoard);
     isSunkShip(ship4Sunk, ship4Coord, playerBoard);
@@ -39,10 +39,15 @@ function shots(showShips, className) {
   const colourValidShots = (grid, index) => {
     if (
       grid.classList[0] === "player1-grid"
-    && Arr.length === 5
-    && count >= 5
-    ) validShots(grid, index);
-    if (grid.classList[0] === "player2-grid") validShots(grid, index);
+			&& Arr.length === 5
+			&& count >= 5
+    ) {
+      validShots(grid, index);
+    }
+    if (grid.classList[0] === "player2-grid") {
+      randomShots();
+      validShots(grid, index);
+    }
     count += 1;
   };
 
@@ -61,6 +66,22 @@ function isSunkShip(shipSunk, shipCoord, playerBoard) {
       });
     });
   }
+}
+
+function randomShots() {
+  const freeSpotArr = [];
+  const humanPlayer = document.querySelectorAll(".player1-grid");
+  humanPlayer.forEach((square, index) => {
+    if (square.classList[1] !== "shots") {
+      freeSpotArr.push(index);
+    }
+  });
+  const randomNum = Math.floor(Math.random() * (freeSpotArr.length - 1));
+  console.log(randomNum);
+  console.log(humanPlayer[randomNum]);
+  setTimeout(() => {
+    humanPlayer[randomNum].classList.add("shots");
+  }, 1000);
 }
 
 const computerShots = shots.bind(null, showShipsOnBoard, "player1-grid");
