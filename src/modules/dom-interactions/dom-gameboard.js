@@ -13,8 +13,8 @@ function createGameboard() {
     return { square };
   }
 
-  boardContainer.appendChild(grids("player1-board", "player1-grid").square);
-  boardContainer.appendChild(grids("player2-board", "player2-grid").square);
+  boardContainer.appendChild(grids("player1-board", "player1-grid space").square);
+  boardContainer.appendChild(grids("player2-board", "player2-grid space").square);
   body.appendChild(boardContainer);
 }
 
