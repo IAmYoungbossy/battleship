@@ -10,7 +10,7 @@ function showShipsRandomly() {
   // board.flat().forEach((item, index2) => {
   //   if (item === 1) squares[index2].classList.add("ship");
   // });
-  return { receiveAttack, Arr, allShipsSunk };
+  return { receiveAttack, allShipsSunk };
 }
 
 module.exports = showShipsRandomly;

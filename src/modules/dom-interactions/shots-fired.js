@@ -1,24 +1,23 @@
-/* eslint-disable no-param-reassign */
 /* eslint-disable no-use-before-define */
 const showShipsOnBoard = require("./place-ship");
 const showShipsRandomly = require("./place-ship-random");
 
-let count = 0;
 /** Checks for valid shots on ships */
 function shots(showShips, className) {
   const playerBoard = document.querySelectorAll(`.${className}`);
-  const { receiveAttack, Arr, allShipsSunk } = showShips();
-
+  const { receiveAttack, allShipsSunk } = showShips();
+  const [receiveAttack2, allShipsSunk2] = showShipsOnBoard();
   const addListenerToGrid = (grid, index) => grid.addEventListener(
     "click",
     colourValidShots.bind(
       null,
       grid,
       index,
-      Arr,
       receiveAttack,
+      receiveAttack2,
       playerBoard,
       allShipsSunk,
+      allShipsSunk2,
     ),
   );
 
@@ -28,19 +27,17 @@ function shots(showShips, className) {
 function colourValidShots(
   grid,
   index,
-  Arr,
   receiveAttack,
+  receiveAttack2,
   playerBoard,
   allShipsSunk,
+  allShipsSunk2,
 ) {
-  if (grid.classList[0] === "player1-grid" && Arr.length === 5 && count >= 5) {
-    validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
-  }
   if (grid.classList[0] === "player2-grid") {
-    randomShots();
+    const { grid2, index2, playerBoard2 } = randomShots();
     validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
+    validShots(grid2, index2, receiveAttack2, playerBoard2, allShipsSunk2);
   }
-  count += 1;
 }
 
 function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk) {
@@ -83,26 +80,17 @@ function isSunkShip(shipSunk, shipCoord, playerBoard) {
 }
 
 function randomShots() {
-  const freeSpotArr = [];
-  const humanPlayer = document.querySelectorAll(".player1-grid");
-  humanPlayer.forEach((square, index) => {
-    if (square.classList[1] === "space") {
-      freeSpotArr.push(index);
-    }
+  const arrIndex = [];
+  const playerBoard2 = document.querySelectorAll(".player1-grid");
+  playerBoard2.forEach((square, index) => {
+    if (square.classList[1] === "space") arrIndex.push(index);
   });
-  const randomNum = Math.floor(Math.random() * (freeSpotArr.length - 1));
-  console.log(freeSpotArr[randomNum]);
-  console.log(humanPlayer[freeSpotArr[randomNum]]);
-  humanPlayer[freeSpotArr[randomNum]].classList.remove("space");
-  setTimeout(() => {
-    humanPlayer[freeSpotArr[randomNum]].classList.add("shots");
-  }, 1000);
+  const ranNum = Math.floor(Math.random() * (arrIndex.length - 1));
+  const index2 = arrIndex[ranNum];
+  const grid2 = playerBoard2[index2];
+  grid2.classList.remove("space");
+  return { grid2, index2, playerBoard2 };
 }
 
-const computerShots = shots.bind(null, showShipsOnBoard, "player1-grid");
 const playerShots = shots.bind(null, showShipsRandomly, "player2-grid");
-
-module.exports = {
-  computerShots,
-  playerShots,
-};
+module.exports = playerShots;

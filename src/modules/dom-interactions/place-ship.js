@@ -7,7 +7,7 @@ function showShipsOnBoard() {
   const header = document.querySelector("h1");
   const squares = document.querySelectorAll(".player1-grid");
   const {
-    board, positionShip, alignShip, receiveAttack, Arr, allShipsSunk,
+    board, positionShip, alignShip, receiveAttack, allShipsSunk,
   } = Gameboard(placeShips.placePlayerShips);
 
   const addListener = (square, index) => {
@@ -18,7 +18,7 @@ function showShipsOnBoard() {
   };
   header.addEventListener("click", alignShip);
   squares.forEach(addListener);
-  return { receiveAttack, Arr, allShipsSunk };
+  return [receiveAttack, allShipsSunk];
 }
 
 /** Adds background colour for missed shots */
