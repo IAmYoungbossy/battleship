@@ -68,13 +68,10 @@ function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk) {
 
 /** Adds background colour when a ship is completely sunk */
 function isSunkShip(shipSunk, shipCoord, playerBoard) {
-  if (shipSunk === true) {
-    shipCoord.forEach((item) => {
-      playerBoard.forEach((square, ind) => {
-        if (+item.join("") === ind) square.style.background = "blue";
-      });
-    });
-  }
+  const addBlueBg = (item) => playerBoard.forEach((square, index) => {
+    if (+item.join("") === index) square.style.background = "blue";
+  });
+  if (shipSunk === true) shipCoord.forEach(addBlueBg);
 }
 
 function computerShots() {
