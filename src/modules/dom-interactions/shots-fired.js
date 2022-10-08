@@ -9,7 +9,7 @@ function shots(showShips, className) {
   const [receiveAttack2, allShipsSunk2] = showShipsOnBoard();
   const addListenerToGrid = (grid, index) => grid.addEventListener(
     "click",
-    colourValidShots.bind(
+    alternateShots.bind(
       null,
       grid,
       index,
@@ -20,11 +20,10 @@ function shots(showShips, className) {
       allShipsSunk2,
     ),
   );
-
   playerBoard.forEach(addListenerToGrid);
 }
 
-function colourValidShots(
+function alternateShots(
   grid,
   index,
   receiveAttack,
