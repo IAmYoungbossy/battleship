@@ -34,7 +34,7 @@ function colourValidShots(
   allShipsSunk2,
 ) {
   if (Array.from(grid.classList).includes("shots")) return;
-  const { grid2, index2, playerBoard2 } = randomShots();
+  const { grid2, index2, playerBoard2 } = computerShots();
   validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
   validShots(grid2, index2, receiveAttack2, playerBoard2, allShipsSunk2);
 }
@@ -78,7 +78,7 @@ function isSunkShip(shipSunk, shipCoord, playerBoard) {
   }
 }
 
-function randomShots() {
+function computerShots() {
   const arrIndex = [];
   const playerBoard2 = document.querySelectorAll(".player1-grid");
   playerBoard2.forEach((square, index) => {
