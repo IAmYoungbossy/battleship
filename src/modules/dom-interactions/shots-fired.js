@@ -33,6 +33,7 @@ function colourValidShots(
   allShipsSunk,
   allShipsSunk2,
 ) {
+  if (Array.from(grid.classList).includes("shots")) return;
   if (grid.classList[0] === "player2-grid") {
     const { grid2, index2, playerBoard2 } = randomShots();
     validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
