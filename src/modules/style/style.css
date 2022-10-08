@@ -33,13 +33,21 @@ h1 {
 
 .player1-grid:hover,
 .player2-grid:hover {
-  background-color: brown;
+  background-color: rgb(255, 183, 183);
 }
 
 .ship {
-  background-color: grey;
+  background-color: grey !important;
 }
 
 .shots {
-  background-color: rgb(159, 46, 211);
+  background-color: rgb(159, 46, 211) !important;
+}
+
+.valid-shot {
+  background-color: red !important;
+}
+
+.sunk-ship {
+  background-color: blue !important;
 }

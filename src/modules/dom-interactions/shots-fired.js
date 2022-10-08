@@ -23,6 +23,7 @@ function shots(showShips, className) {
   playerBoard.forEach(addListenerToGrid);
 }
 
+/** Alternate shots between computer and player */
 function alternateShots(
   grid,
   index,
@@ -38,6 +39,7 @@ function alternateShots(
   validShots(grid2, index2, receiveAttack2, playerBoard2, allShipsSunk2);
 }
 
+/** Colours valid shots red */
 function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk) {
   const axis = `${index}`.split("");
   if (axis.length === 1) axis.unshift("0");
@@ -58,7 +60,7 @@ function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk) {
 
   if (allShipsSunk()) console.log("Works");
   grid.classList.add("shots");
-  if (hitCoord) grid.style.background = "red";
+  if (hitCoord) grid.classList.add("valid-shot");
   isSunkShip(ship5Sunk, ship5Coord, playerBoard);
   isSunkShip(ship4Sunk, ship4Coord, playerBoard);
   isSunkShip(ship3Sunk, ship3Coord, playerBoard);
@@ -66,10 +68,10 @@ function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk) {
   isSunkShip(ship1Sunk, ship1Coord, playerBoard);
 }
 
-/** Adds background colour when a ship is completely sunk */
+/** Adds blue background colour when a ship is completely sunk */
 function isSunkShip(shipSunk, shipCoord, playerBoard) {
   const addBlueBg = (item) => playerBoard.forEach((square, index) => {
-    if (+item.join("") === index) square.style.background = "blue";
+    if (+item.join("") === index) square.classList.add("sunk-ship");
   });
   if (shipSunk === true) shipCoord.forEach(addBlueBg);
 }
@@ -77,9 +79,10 @@ function isSunkShip(shipSunk, shipCoord, playerBoard) {
 function computerShots() {
   const arrIndex = [];
   const playerBoard2 = document.querySelectorAll(".player1-grid");
-  playerBoard2.forEach((square, index) => {
+  const push = (square, index) => {
     if (square.classList[1] === "space") arrIndex.push(index);
-  });
+  };
+  playerBoard2.forEach(push);
   const ranNum = Math.floor(Math.random() * (arrIndex.length - 1));
   const index2 = arrIndex[ranNum];
   const grid2 = playerBoard2[index2];
