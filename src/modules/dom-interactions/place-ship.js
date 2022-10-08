@@ -3,11 +3,11 @@ const Gameboard = require("../gameboard");
 const placeShips = require("../placeShipsOnBoard");
 
 /** Gets ships coordinates from Gameboard and display in DOM */
-function showShipsOnBoard() {
+function showShipsOnBoard(className) {
   const header = document.querySelector("h1");
-  const squares = document.querySelectorAll(".player1-grid");
+  const squares = document.querySelectorAll(`.${className}`);
   const {
-    board, positionShip, alignShip, receiveAttack, allShipsSunk,
+    board, positionShip, alignShip, receiveAttack, allShipsSunk, Arr,
   } = Gameboard(placeShips.placePlayerShips);
 
   const addListener = (square, index) => {
@@ -18,7 +18,7 @@ function showShipsOnBoard() {
   };
   header.addEventListener("click", alignShip);
   squares.forEach(addListener);
-  return [receiveAttack, allShipsSunk];
+  return [receiveAttack, Arr, allShipsSunk];
 }
 
 /** Adds background colour for missed shots */

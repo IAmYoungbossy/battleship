@@ -6,7 +6,7 @@ const showShipsRandomly = require("./place-ship-random");
 function shots(showShips, className) {
   const playerBoard = document.querySelectorAll(`.${className}`);
   const { receiveAttack, allShipsSunk } = showShips();
-  const [receiveAttack2, allShipsSunk2] = showShipsOnBoard();
+  const [receiveAttack2, , allShipsSunk2] = showShipsOnBoard("player1-grid");
   const addListenerToGrid = (grid, index) => grid.addEventListener(
     "click",
     alternateShots.bind(
@@ -91,4 +91,4 @@ function computerShots() {
 }
 
 const playerShots = shots.bind(null, showShipsRandomly, "player2-grid");
-module.exports = playerShots;
+module.exports = { playerShots, validShots };
