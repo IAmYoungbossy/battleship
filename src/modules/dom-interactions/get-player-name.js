@@ -1,6 +1,6 @@
 const createDomElement = require("./helper-function");
 
-function getName() {
+function getName(playerName) {
   const { body } = document;
   const inputDiv = createDomElement("div", { class: "input-div" });
   const label = createDomElement("label", { for: "name" });
@@ -12,7 +12,7 @@ function getName() {
   });
   const errorMsg = createDomElement("span", { class: "error-msg" });
   const startBtn = createDomElement("button", { class: "start-btn" });
-  label.textContent = "ENTER PLAYER NAME:";
+  label.textContent = playerName;
   startBtn.textContent = "START GAME";
   inputDiv.append(label, nameInput, errorMsg, startBtn);
   body.append(inputDiv);
