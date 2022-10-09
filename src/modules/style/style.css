@@ -9,7 +9,6 @@ body {
   flex-direction: column;
   height: 100vh;
   align-items: center;
-  justify-content: space-between;
   background-color: darkcyan;
 }
 
@@ -29,6 +28,7 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 100px;
 }
 
 label {
@@ -43,6 +43,30 @@ input {
   width: fit-content;
   padding: 15px;
   align-self: center;
+}
+
+.choose-div {
+  margin-top: 100px;
+}
+
+.choose-div>p {
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.btn-div {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.play-human {
+  margin-left: 20px;
+}
+
+.play-ai,
+.play-human {
+  width: 100px;
+  padding: 20px 0;
 }
 
 .board-container {
@@ -91,6 +115,7 @@ input {
 
 footer {
   padding: 15px;
+  margin-top: auto;
   text-align: center;
   background-color: white;
   width: -webkit-fill-available;
