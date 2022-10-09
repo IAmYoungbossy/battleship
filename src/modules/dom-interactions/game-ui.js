@@ -2,7 +2,6 @@ const createDomElement = require("./helper-function");
 
 function getName() {
   const { body } = document;
-  const gameHeader = createDomElement("hi", { class: "header" });
   const inputDiv = createDomElement("div", { class: "input-div" });
   const label = createDomElement("label", { for: "name" });
   const nameInput = createDomElement("input", {
@@ -13,7 +12,7 @@ function getName() {
   label.textContent = "ENTER PLAYER NAME:";
   startBtn.textContent = "START GAME";
   inputDiv.append(label, nameInput, errorMsg, startBtn);
-  body.append(gameHeader, inputDiv);
+  body.append(inputDiv);
 }
 
 function headerElem() {
