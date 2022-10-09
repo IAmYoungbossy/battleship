@@ -16,4 +16,13 @@ function getName() {
   body.append(gameHeader, inputDiv);
 }
 
+function headerElem() {
+  const gameTitle = createDomElement("hi", { class: "game-title" });
+  const header = createDomElement("header");
+  const { body } = document;
+  gameTitle.textContent = "BATTLESHIP";
+  header.append(gameTitle);
+  body.append(header);
+}
+
 module.exports = getName;
