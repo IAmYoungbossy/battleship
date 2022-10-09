@@ -3,7 +3,7 @@ const createDomElement = require("./helper-function");
 function createFooter() {
   const footer = createDomElement("footer");
   const anchorLink = createDomElement("a", {
-    href: "https://github.com/IAmYoungbossy/weather-app",
+    href: "https://github.com/IAmYoungbossy/battleship",
   });
   const gitHubIcon = createDomElement("i", { class: "fa fa-github" });
   anchorLink.appendChild(gitHubIcon);
