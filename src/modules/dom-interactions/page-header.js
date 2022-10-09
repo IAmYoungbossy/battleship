@@ -1,6 +1,6 @@
 const createDomElement = require("./helper-function");
 
-function headerElem(className) {
+function createHeader(className) {
   const gameTitle = createDomElement("hi", { class: className });
   const header = createDomElement("header");
   const { body } = document;
@@ -9,4 +9,4 @@ function headerElem(className) {
   body.append(header);
 }
 
-module.exports = headerElem;
+module.exports = createHeader;
