@@ -5,10 +5,9 @@ function getName(playerName) {
   const inputDiv = createDomElement("div", { class: "input-div" });
   const label = createDomElement("label", { for: "name" });
   const nameInput = createDomElement("input", {
-    id: "fname",
-    name: "name",
+    id: "name",
     type: "text",
-    placeholder: "Bob",
+    placeholder: "Letam",
   });
   const errorMsg = createDomElement("span", { class: "error-msg" });
   const startBtn = createDomElement("button", { class: "start-btn" });
