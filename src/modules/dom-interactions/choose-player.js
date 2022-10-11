@@ -21,12 +21,10 @@ function choosePlayer(playerName) {
   instruction.textContent = `${playerName}, Choose Your Enemy.`;
   chooseDiv.append(instruction, btnDiv);
 
-  if (playAi) {
-    playAi.addEventListener(
-      "click",
-      replaceChooseDiv.bind(null, alignShipDiv, chooseDiv),
-    );
-  }
+  playAi.addEventListener(
+    "click",
+    replaceChooseDiv.bind(null, alignShipDiv, chooseDiv),
+  );
 
   return chooseDiv;
 }

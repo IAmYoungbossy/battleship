@@ -1,5 +1,4 @@
 /* eslint-disable no-use-before-define */
-const { mene } = require("./page-get-name");
 const showShipsOnBoard = require("./place-ship");
 const showShipsRandomly = require("./place-ship-random");
 
