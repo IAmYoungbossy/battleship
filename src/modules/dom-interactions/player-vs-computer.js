@@ -2,6 +2,8 @@
 const showShipsOnBoard = require("./place-ship");
 const showShipsRandomly = require("./place-ship-random");
 
+let time = 0;
+
 /** Checks for valid shots on ships */
 function shots(showShips, className) {
   const playerBoard = document.querySelectorAll(`.${className}`);
@@ -34,9 +36,14 @@ function alternateShots(
   allShipsSunk2,
 ) {
   if (Array.from(grid.classList).includes("shots")) return;
+  if (time === 1) return;
+  time = 1;
   const { grid2, index2, playerBoard2 } = computerShots();
   validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
-  validShots(grid2, index2, receiveAttack2, playerBoard2, allShipsSunk2);
+  setTimeout(() => {
+    time = 0;
+    validShots(grid2, index2, receiveAttack2, playerBoard2, allShipsSunk2);
+  }, 1500);
 }
 
 /** Colours valid shots red */
