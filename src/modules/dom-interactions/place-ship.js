@@ -29,7 +29,16 @@ function addBgColor(index, positionShip, board, squares, Arr, player2) {
       squares[index2].classList.add("ship");
     }
   });
-  if (Arr.length === 5) player2.classList.add("show");
+  if (Arr.length === 5) createPlayBtn();
+  // player2.classList.add("show");
+}
+
+function createPlayBtn() {
+  const shipAxis = document.querySelector(".align-ships");
+  const instruction = shipAxis.children[0];
+  const startBtn = shipAxis.children[1];
+  instruction.textContent = "Press Play To Start.";
+  startBtn.textContent = "Play";
 }
 
 module.exports = showShipsOnBoard;
