@@ -3,8 +3,7 @@ const createDomElement = require("./helper-function");
 const { playerShots } = require("./player-vs-computer");
 
 function choosePlayer() {
-  const header = document.querySelector("h1");
-  const head = document.querySelector("header");
+  const input = document.querySelector("input");
   const chooseDiv = createDomElement("div", { class: "choose-div" });
   const btnDiv = createDomElement("div", { class: "btn-div" });
   const playAi = createDomElement("button", { class: "play-ai" });
@@ -15,6 +14,7 @@ function choosePlayer() {
   const alignShipDiv = createDomElement("div", { class: "align-ships" });
   const instruction2 = createDomElement("p");
   const axisBtn = createDomElement("button", { class: "axis-btn" });
+  let inputValue;
 
   playAi.textContent = "PLAY AI";
   playHuman.textContent = "PLAY HUMAN";
@@ -24,17 +24,26 @@ function choosePlayer() {
   alignShipDiv.append(instruction2, axisBtn);
   instruction.textContent = "Choose Your Enemy.";
   chooseDiv.append(instruction, btnDiv);
-  const replaceNameDiv = () => document.body.replaceChild(chooseDiv, getNameDiv);
+
+  const replaceNameDiv = () => {
+    inputValue = input.value;
+    document.body.replaceChild(chooseDiv, getNameDiv);
+  };
+
   startBtn.addEventListener("click", replaceNameDiv);
   if (playAi) {
     playAi.addEventListener(
       "click",
-      replaceChooseDiv.bind(null, header, alignShipDiv, chooseDiv, head),
+      replaceChooseDiv.bind(null, alignShipDiv, chooseDiv),
     );
   }
+
+  return inputValue;
 }
 
-function replaceChooseDiv(header, alignShipDiv, chooseDiv, head) {
+function replaceChooseDiv(alignShipDiv, chooseDiv) {
+  const header = document.querySelector("h1");
+  const head = document.querySelector("header");
   header.classList.add("h1");
   head.classList.add("header");
   document.body.insertBefore(alignShipDiv, chooseDiv);
