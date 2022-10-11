@@ -1,4 +1,4 @@
-const { player1, player2 } = require("../player");
+const humanPlayers = require("../player");
 const createGameboard = require("./dom-gameboard");
 const createDomElement = require("./helper-function");
 const { playerShots } = require("./player-vs-computer");
@@ -21,35 +21,26 @@ function choosePlayer(playerName) {
   alignShipDiv.append(instruction2, axisBtn);
   instruction.textContent = `${playerName}, Choose Your Enemy.`;
   chooseDiv.append(instruction, btnDiv);
-  playAi.addEventListener("click", aiPlay.bind(null, alignShipDiv, chooseDiv));
+  playAi.addEventListener(
+    "click",
+    inserBoard.bind(null, alignShipDiv, chooseDiv, playerShots),
+  );
   playHuman.addEventListener(
     "click",
-    humanPlay.bind(null, alignShipDiv, chooseDiv),
+    inserBoard.bind(null, alignShipDiv, chooseDiv, humanPlayers),
   );
   return chooseDiv;
 }
 
-function aiPlay(alignShipDiv, chooseDiv) {
+function inserBoard(alignShipDiv, chooseDiv, playerShot) {
   const header = document.querySelector("h1");
   const head = document.querySelector("header");
+  const { boardContainer } = createGameboard();
   header.classList.add("h1");
   head.classList.add("header");
   document.body.insertBefore(alignShipDiv, chooseDiv);
-  const { boardContainer } = createGameboard();
   document.body.replaceChild(boardContainer, chooseDiv);
-  playerShots();
-}
-
-function humanPlay(alignShipDiv, chooseDiv) {
-  const header = document.querySelector("h1");
-  const head = document.querySelector("header");
-  header.classList.add("h1");
-  head.classList.add("header");
-  document.body.insertBefore(alignShipDiv, chooseDiv);
-  const { boardContainer } = createGameboard();
-  document.body.replaceChild(boardContainer, chooseDiv);
-  player1();
-  player2();
+  playerShot();
 }
 
 module.exports = choosePlayer;

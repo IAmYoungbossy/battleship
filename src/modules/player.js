@@ -44,7 +44,9 @@ function shots(
   }
 }
 
-const player1 = player.bind(null, "player1-grid", "player1-grid");
-const player2 = player.bind(null, "player2-grid", "player2-grid");
+function humanPlayers() {
+  player("player1-grid", "player1-grid");
+  player("player2-grid", "player2-grid");
+}
 
-module.exports = { player1, player2 };
+module.exports = humanPlayers;
