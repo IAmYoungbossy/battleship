@@ -23,13 +23,13 @@ function choosePlayer(playerName) {
 
   playAi.addEventListener(
     "click",
-    replaceChooseDiv.bind(null, alignShipDiv, chooseDiv),
+    aiPlay.bind(null, alignShipDiv, chooseDiv),
   );
 
   return chooseDiv;
 }
 
-function replaceChooseDiv(alignShipDiv, chooseDiv) {
+function aiPlay(alignShipDiv, chooseDiv) {
   const header = document.querySelector("h1");
   const head = document.querySelector("header");
   header.classList.add("h1");
