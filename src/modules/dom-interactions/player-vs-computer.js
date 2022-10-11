@@ -43,6 +43,7 @@ function alternateShots(
   const instruction = document.querySelector(".align-ships").children[0];
   instruction.textContent = "Waiting for Computer's Shot.";
   validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
+
   setTimeout(() => {
     time = 0;
     const playerName = JSON.parse(localStorage.getItem("playerName"));

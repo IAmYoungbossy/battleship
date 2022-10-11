@@ -14,8 +14,6 @@ body {
 }
 
 header {
-  border-bottom: 1px solid white;
-  border-top: 1px solid white;
   width: -webkit-fill-available;
 }
 
@@ -25,7 +23,7 @@ header {
 
 h1 {
   text-align: center;
-  font-size: 6rem;
+  font-size: 8rem;
   color: darkslategrey;
 }
 
@@ -44,12 +42,9 @@ h1 {
   text-align: center;
 }
 
-.align-ships > p {
-  text-transform: uppercase;
-}
-
 label {
   font-size: xx-large;
+  color: aquamarine;
 }
 
 input {
@@ -68,7 +63,8 @@ input {
 
 .choose-div>p {
   font-size: 2rem;
-  text-transform: uppercase;
+  text-transform: capitalize;
+  color: aquamarine;
 }
 
 .btn-div {
