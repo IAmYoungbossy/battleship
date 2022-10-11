@@ -4,31 +4,33 @@ const placeShips = require("../placeShipsOnBoard");
 
 /** Gets ships coordinates from Gameboard and display in DOM */
 function showShipsOnBoard(className) {
-  const header = document.querySelector("h1");
+  const align = document.querySelector(".align-ships");
   const squares = document.querySelectorAll(`.${className}`);
   const {
     board, positionShip, alignShip, receiveAttack, allShipsSunk, Arr,
   } = Gameboard(placeShips.placePlayerShips);
-
+  const player2 = document.querySelector(".player2-board");
   const addListener = (square, index) => {
     square.addEventListener(
       "click",
-      addBackgroundColor.bind(null, index, positionShip, board, squares),
+      addBackgroundColor.bind(null, index, positionShip, board, squares, Arr, player2),
     );
   };
-  header.addEventListener("click", alignShip);
+  align.addEventListener("click", alignShip);
   squares.forEach(addListener);
   return [receiveAttack, Arr, allShipsSunk];
 }
 
 /** Adds background colour for missed shots */
-function addBackgroundColor(index, positionShip, board, squares) {
+function addBackgroundColor(index, positionShip, board, squares, Arr, player2) {
   positionShip(index);
   board.flat().forEach((item, index2) => {
     if (item === 1) {
       squares[index2].classList.add("ship");
     }
   });
+  if (Arr.length === 5) player2.classList.add("show");
+  console.log(Arr);
 }
 
 module.exports = showShipsOnBoard;

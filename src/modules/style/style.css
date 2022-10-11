@@ -5,6 +5,7 @@
 }
 
 body {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -18,10 +19,18 @@ header {
   width: -webkit-fill-available;
 }
 
+.header {
+  border: 0ch;
+}
+
 h1 {
   text-align: center;
   font-size: 6rem;
   color: darkslategrey;
+}
+
+.h1 {
+  font-size: 4rem;
 }
 
 .input-div {
@@ -29,6 +38,10 @@ h1 {
   flex-direction: column;
   gap: 10px;
   margin-top: 100px;
+}
+
+.align-ships {
+  text-align: center;
 }
 
 label {
@@ -97,8 +110,18 @@ input {
   background-color: rgb(255, 183, 183);
 }
 
+.player2-board {
+  position: absolute;
+  visibility: hidden;
+}
+
+.show {
+  position: relative;
+  visibility: visible;
+}
+
 .ship {
-  background-color: grey !important;
+  background-color: rgb(76, 56, 56) !important;
 }
 
 .shots {
