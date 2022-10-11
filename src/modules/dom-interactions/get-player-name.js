@@ -1,8 +1,6 @@
 const choosePlayer = require("./choose-player");
 const createDomElement = require("./helper-function");
 
-let playerName;
-
 function getName(playerName) {
   const { body } = document;
   const inputDiv = createDomElement("div", { class: "input-div" });
@@ -27,9 +25,9 @@ function getInputValue(startBtn, nameInput) {
   const replaceNameDiv = () => {
     const chooseDiv = choosePlayer(nameInput.value);
     document.body.replaceChild(chooseDiv, getNameDiv);
-    playerName = nameInput.value;
+    localStorage.setItem("playerName", JSON.stringify(`${nameInput.value}`));
   };
   startBtn.addEventListener("click", replaceNameDiv);
 }
 
-module.exports = { getName, playerName };
+module.exports = getName;

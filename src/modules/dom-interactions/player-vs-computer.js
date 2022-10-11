@@ -1,4 +1,5 @@
 /* eslint-disable no-use-before-define */
+const { mene } = require("./page-get-name");
 const showShipsOnBoard = require("./place-ship");
 const showShipsRandomly = require("./place-ship-random");
 
@@ -39,6 +40,7 @@ function alternateShots(
   if (time === 1) return;
   time = 1;
   const { grid2, index2, playerBoard2 } = computerShots();
+  console.log(JSON.parse(localStorage.getItem("playerName")));
   validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
   setTimeout(() => {
     time = 0;

@@ -1,11 +1,11 @@
-const player = require("./get-player-name");
 const createFooter = require("./page-footer");
+const getName = require("./get-player-name");
 const createHeader = require("./page-header");
 
 function renderGetNamePage() {
   createHeader("page-one-header");
-  player.getName("ENTER PLAYER NAME:");
+  getName("ENTER PLAYER NAME:");
   createFooter();
 }
 
-module.exports = renderGetNamePage;
+module.exports = { renderGetNamePage };
