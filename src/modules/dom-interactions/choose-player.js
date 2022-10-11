@@ -2,19 +2,15 @@ const createGameboard = require("./dom-gameboard");
 const createDomElement = require("./helper-function");
 const { playerShots } = require("./player-vs-computer");
 
-function choosePlayer() {
-  const input = document.querySelector("input");
+function choosePlayer(playerName) {
   const chooseDiv = createDomElement("div", { class: "choose-div" });
   const btnDiv = createDomElement("div", { class: "btn-div" });
   const playAi = createDomElement("button", { class: "play-ai" });
   const playHuman = createDomElement("button", { class: "play-human" });
-  const getNameDiv = document.querySelector(".input-div");
-  const startBtn = document.querySelector(".start-btn");
   const instruction = createDomElement("p");
   const alignShipDiv = createDomElement("div", { class: "align-ships" });
   const instruction2 = createDomElement("p");
   const axisBtn = createDomElement("button", { class: "axis-btn" });
-  let inputValue;
 
   playAi.textContent = "PLAY AI";
   playHuman.textContent = "PLAY HUMAN";
@@ -22,15 +18,9 @@ function choosePlayer() {
   axisBtn.textContent = "X AXIS";
   btnDiv.append(playAi, playHuman);
   alignShipDiv.append(instruction2, axisBtn);
-  instruction.textContent = "Choose Your Enemy.";
+  instruction.textContent = `${playerName}, Choose Your Enemy.`;
   chooseDiv.append(instruction, btnDiv);
 
-  const replaceNameDiv = () => {
-    inputValue = input.value;
-    document.body.replaceChild(chooseDiv, getNameDiv);
-  };
-
-  startBtn.addEventListener("click", replaceNameDiv);
   if (playAi) {
     playAi.addEventListener(
       "click",
@@ -38,7 +28,7 @@ function choosePlayer() {
     );
   }
 
-  return inputValue;
+  return chooseDiv;
 }
 
 function replaceChooseDiv(alignShipDiv, chooseDiv) {
