@@ -34,8 +34,13 @@ function addBgColor(index, positionShip, board, squares, Arr) {
 
 function showEnemyWater() {
   const player = document.querySelector(".player2-board");
-  const startBtn = createPlayBtn();
-  const showShips = () => player.classList.add("show");
+  const { startBtn, instruction } = createPlayBtn();
+  const showShips = () => {
+    const playerName = JSON.parse(localStorage.getItem("playerName"));
+    player.classList.add("show");
+    instruction.textContent = `Waiting for ${playerName}'s shot`;
+    startBtn.textContent = "RESTART GAME";
+  };
   startBtn.addEventListener("click", showShips);
 }
 
@@ -45,7 +50,7 @@ function createPlayBtn() {
   const startBtn = shipAxis.children[1];
   instruction.textContent = "Press Play To Start.";
   startBtn.textContent = "Play";
-  return startBtn;
+  return { startBtn, instruction };
 }
 
 module.exports = showShipsOnBoard;

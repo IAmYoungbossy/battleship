@@ -40,10 +40,13 @@ function alternateShots(
   if (time === 1) return;
   time = 1;
   const { grid2, index2, playerBoard2 } = computerShots();
-  console.log(JSON.parse(localStorage.getItem("playerName")));
+  const instruction = document.querySelector(".align-ships").children[0];
+  instruction.textContent = "Waiting for Computer's Shot.";
   validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
   setTimeout(() => {
     time = 0;
+    const playerName = JSON.parse(localStorage.getItem("playerName"));
+    instruction.textContent = `Waiting for ${playerName}'s Shot.`;
     validShots(grid2, index2, receiveAttack2, playerBoard2, allShipsSunk2);
   }, 1500);
 }

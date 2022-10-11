@@ -44,6 +44,10 @@ h1 {
   text-align: center;
 }
 
+.align-ships > p {
+  text-transform: uppercase;
+}
+
 label {
   font-size: xx-large;
 }
