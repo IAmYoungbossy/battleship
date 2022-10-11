@@ -9,28 +9,34 @@ function showShipsOnBoard(className) {
   const {
     board, positionShip, alignShip, receiveAttack, allShipsSunk, Arr,
   } = Gameboard(placeShips.placePlayerShips);
-  const player2 = document.querySelector(".player2-board");
+
   const addListener = (square, index) => {
     square.addEventListener(
       "click",
-      addBgColor.bind(null, index, positionShip, board, squares, Arr, player2),
+      addBgColor.bind(null, index, positionShip, board, squares, Arr),
     );
   };
+
   align.addEventListener("click", alignShip);
   squares.forEach(addListener);
   return [receiveAttack, Arr, allShipsSunk];
 }
 
 /** Adds background colour for missed shots */
-function addBgColor(index, positionShip, board, squares, Arr, player2) {
+function addBgColor(index, positionShip, board, squares, Arr) {
   positionShip(index);
   board.flat().forEach((item, index2) => {
-    if (item === 1) {
-      squares[index2].classList.add("ship");
-    }
+    if (item === 1) squares[index2].classList.add("ship");
   });
-  if (Arr.length === 5) createPlayBtn();
-  // player2.classList.add("show");
+
+  if (Arr.length === 5) showEnemyWater();
+}
+
+function showEnemyWater() {
+  const player = document.querySelector(".player2-board");
+  const startBtn = createPlayBtn();
+  const showShips = () => player.classList.add("show");
+  startBtn.addEventListener("click", showShips);
 }
 
 function createPlayBtn() {
@@ -39,6 +45,7 @@ function createPlayBtn() {
   const startBtn = shipAxis.children[1];
   instruction.textContent = "Press Play To Start.";
   startBtn.textContent = "Play";
+  return startBtn;
 }
 
 module.exports = showShipsOnBoard;
