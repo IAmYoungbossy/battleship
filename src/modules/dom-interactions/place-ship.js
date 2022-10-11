@@ -13,7 +13,7 @@ function showShipsOnBoard(className) {
   const addListener = (square, index) => {
     square.addEventListener(
       "click",
-      addBackgroundColor.bind(null, index, positionShip, board, squares, Arr, player2),
+      addBgColor.bind(null, index, positionShip, board, squares, Arr, player2),
     );
   };
   align.addEventListener("click", alignShip);
@@ -22,7 +22,7 @@ function showShipsOnBoard(className) {
 }
 
 /** Adds background colour for missed shots */
-function addBackgroundColor(index, positionShip, board, squares, Arr, player2) {
+function addBgColor(index, positionShip, board, squares, Arr, player2) {
   positionShip(index);
   board.flat().forEach((item, index2) => {
     if (item === 1) {
@@ -30,7 +30,6 @@ function addBackgroundColor(index, positionShip, board, squares, Arr, player2) {
     }
   });
   if (Arr.length === 5) player2.classList.add("show");
-  console.log(Arr);
 }
 
 module.exports = showShipsOnBoard;
