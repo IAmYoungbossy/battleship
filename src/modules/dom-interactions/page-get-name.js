@@ -4,7 +4,7 @@ const createHeader = require("./page-header");
 
 function renderGetNamePage() {
   createHeader("page-one-header");
-  getName("ENTER PLAYER NAME:");
+  getName("Enter Player's Name:");
   createFooter();
 }
 

@@ -1,5 +1,5 @@
 const choosePlayer = require("./choose-player");
-const createDomElement = require("./helper-function");
+const createInputElem = require("./name-input");
 
 function getName(nameDetails) {
   const { inputDiv, startBtn, nameInput } = createInputElem(
@@ -8,23 +8,6 @@ function getName(nameDetails) {
   );
   document.body.append(inputDiv);
   getInputValue(startBtn, nameInput);
-}
-
-function createInputElem(nameDetails, btnName) {
-  const inputDiv = createDomElement("div", { class: "input-div" });
-  const label = createDomElement("label", { for: "name" });
-  const nameInput = createDomElement("input", {
-    id: "name",
-    type: "text",
-    placeholder: "Letam",
-  });
-  const errorMsg = createDomElement("span", { class: "error-msg" });
-  const startBtn = createDomElement("button", { class: "start-btn" });
-
-  label.textContent = nameDetails;
-  startBtn.textContent = btnName;
-  inputDiv.append(label, nameInput, errorMsg, startBtn);
-  return { inputDiv, startBtn, nameInput };
 }
 
 function getInputValue(startBtn, nameInput) {
@@ -37,4 +20,4 @@ function getInputValue(startBtn, nameInput) {
   startBtn.addEventListener("click", replaceNameDiv);
 }
 
-module.exports = { getName, createInputElem };
+module.exports = { getName };

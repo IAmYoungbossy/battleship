@@ -1,6 +1,7 @@
 const humanPlayers = require("../player");
 const createGameboard = require("./dom-gameboard");
 const createDomElement = require("./helper-function");
+const createInputElem = require("./name-input");
 const { playerShots } = require("./player-vs-computer");
 
 function choosePlayer(playerName) {
@@ -25,10 +26,7 @@ function choosePlayer(playerName) {
     "click",
     inserBoard.bind(null, alignShipDiv, chooseDiv, playerShots),
   );
-  playHuman.addEventListener(
-    "click",
-    inserBoard.bind(null, alignShipDiv, chooseDiv, humanPlayers),
-  );
+  playHuman.addEventListener("click", Player2Name.bind(null, chooseDiv));
   return chooseDiv;
 }
 
@@ -41,6 +39,13 @@ function inserBoard(alignShipDiv, chooseDiv, playerShot) {
   document.body.insertBefore(alignShipDiv, chooseDiv);
   document.body.replaceChild(boardContainer, chooseDiv);
   playerShot();
+}
+
+function Player2Name(chooseDiv) {
+  const { inputDiv } = createInputElem("Enter 2nd Player's Name", "Continue");
+  document.body.replaceChild(inputDiv, chooseDiv);
+  const input = document.querySelector("input");
+  input.classList.add("second-input");
 }
 
 module.exports = choosePlayer;
