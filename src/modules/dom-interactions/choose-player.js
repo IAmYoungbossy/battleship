@@ -24,13 +24,17 @@ function choosePlayer(playerName) {
   chooseDiv.append(instruction, btnDiv);
   playAi.addEventListener(
     "click",
-    inserBoard.bind(null, alignShipDiv, chooseDiv, playerShots),
+    insertBoard.bind(null, alignShipDiv, chooseDiv, playerShots),
   );
-  playHuman.addEventListener("click", Player2Name.bind(null, chooseDiv));
+  playHuman.addEventListener(
+    "click",
+    player2Name.bind(null, chooseDiv, humanPlayers, alignShipDiv),
+  );
+
   return chooseDiv;
 }
 
-function inserBoard(alignShipDiv, chooseDiv, playerShot) {
+function insertBoard(alignShipDiv, chooseDiv, playerShot) {
   const header = document.querySelector("h1");
   const head = document.querySelector("header");
   const { boardContainer } = createGameboard();
@@ -41,11 +45,23 @@ function inserBoard(alignShipDiv, chooseDiv, playerShot) {
   playerShot();
 }
 
-function Player2Name(chooseDiv) {
-  const { inputDiv } = createInputElem("Enter 2nd Player's Name", "Continue");
-  document.body.replaceChild(inputDiv, chooseDiv);
+function player2Name(chooseDiv, playerShot, alignShipDiv) {
   const input = document.querySelector("input");
+  const { inputDiv, startBtn, nameInput } = createInputElem(
+    "Enter 2nd Player's Name",
+    "Continue",
+  );
+  document.body.replaceChild(inputDiv, chooseDiv);
   input.classList.add("second-input");
+  startBtn.addEventListener(
+    "click",
+    player1Board.bind(null, nameInput, inputDiv, playerShot, alignShipDiv),
+  );
+}
+
+function player1Board(nameInput, inputDiv, playerShot, alignShipDiv) {
+  localStorage.setItem("player2Name", JSON.stringify(`${nameInput.value}`));
+  insertBoard(alignShipDiv, inputDiv, playerShot);
 }
 
 module.exports = choosePlayer;
