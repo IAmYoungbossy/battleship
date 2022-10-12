@@ -1,6 +1,3 @@
-/* eslint-disable no-use-before-define */
-// Helper function for creating DOM Elements
-
 function createDomElement(type, attributes) {
   const newElement = document.createElement(`${type}`);
   if (attributes == null) return newElement;
@@ -14,4 +11,4 @@ function setAttributes(element, attributes) {
   });
 }
 
-module.exports = createDomElement;
+export {createDomElement};

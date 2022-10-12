@@ -1,6 +1,5 @@
-/* eslint-disable no-use-before-define */
-const showShipsOnBoard = require("./place-ship");
-const showShipsRandomly = require("./place-ship-random");
+import {showShipsOnBoard} from "./place-ship";
+import {showShipsRandomly} from "./place-ship-random";
 
 let time = 0;
 
@@ -103,4 +102,4 @@ function computerShots() {
 }
 
 const playerShots = shots.bind(null, showShipsRandomly, "player2-grid");
-module.exports = { playerShots, validShots };
+export { playerShots, validShots };

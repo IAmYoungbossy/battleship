@@ -1,6 +1,5 @@
-/* eslint-disable no-use-before-define */
 /* eslint-disable no-return-assign */
-const shipAxis = require("./shp-axis");
+import {shipAxis} from "./shp-axis";
 
 function placePlayerShips(Arr, board, shipArr, index, align) {
   let shipLenght;
@@ -41,7 +40,4 @@ function placeShips(index, shipLenght, align, board, Arr, shipArr) {
   }
 }
 
-module.exports = {
-  placePlayerShips,
-  placeComputerShips,
-};
+export { placePlayerShips, placeComputerShips };

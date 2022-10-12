@@ -1,4 +1,4 @@
-const createDomElement = require("./helper-function");
+import {createDomElement} from "./helper-function";
 
 function createGameboard() {
   const boardContainer = createDomElement("div", { class: "board-container" });
@@ -17,4 +17,4 @@ function createGameboard() {
   return { boardContainer };
 }
 
-module.exports = createGameboard;
+export {createGameboard};

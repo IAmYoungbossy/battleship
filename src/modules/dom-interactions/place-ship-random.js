@@ -1,12 +1,12 @@
-const Gameboard = require("../gameboard");
-const placeShips = require("../placeShipsOnBoard");
+import {Gameboard} from "../gameboard";
+import { placeComputerShips } from "../placeShipsOnBoard";
 
 function showShipsRandomly() {
   const {
     positionShip, receiveAttack, allShipsSunk, Arr,
-  } = Gameboard(placeShips.placeComputerShips);
+  } = Gameboard(placeComputerShips);
   positionShip();
   return { receiveAttack, allShipsSunk, Arr };
 }
 
-module.exports = showShipsRandomly;
+export {showShipsRandomly};

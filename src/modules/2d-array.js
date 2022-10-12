@@ -11,4 +11,4 @@ function create2DArray(num) {
   return board;
 }
 
-module.exports = create2DArray;
+export {create2DArray};

@@ -1,4 +1,4 @@
-const createDomElement = require("./helper-function");
+import {createDomElement} from "./helper-function";
 
 function createInputElem(nameDetails, btnName) {
   const inputDiv = createDomElement("div", { class: "input-div" });
@@ -17,4 +17,4 @@ function createInputElem(nameDetails, btnName) {
   return { inputDiv, startBtn, nameInput };
 }
 
-module.exports = createInputElem;
+export {createInputElem};

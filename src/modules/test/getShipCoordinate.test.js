@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-const shipCoordinates = require("../getShipCoordinates");
+import {shipCoordinates} from "../getShipCoordinates";
 
 test("shipCoordinates([0, 0], 5, 'X') should return [[0,0], [0, 1], [0, 2], [0, 3], [0, 4]] coordinates", () => {
   expect(shipCoordinates([0, 0], 5, "X")).toEqual([

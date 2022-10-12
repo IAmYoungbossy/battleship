@@ -1,6 +1,6 @@
 /* eslint-disable no-plusplus */
-const Ship = require("./ship");
-const checkValidMove = require("./valid-move");
+import {Ship} from "./ship";
+import {checkValidMove} from "./valid-move";
 
 function shipAxis(x, y, length, align, board, receiveAttack) {
   const ship = Ship([x, y], length, align, receiveAttack).shipCoord;
@@ -15,4 +15,4 @@ function shipAxis(x, y, length, align, board, receiveAttack) {
   return arrayCoord;
 }
 
-module.exports = shipAxis;
+export {shipAxis};

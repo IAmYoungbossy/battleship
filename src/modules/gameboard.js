@@ -1,6 +1,5 @@
-/* eslint-disable no-return-assign */
-const create2DArray = require("./2d-array");
-const Ship = require("./ship");
+import {create2DArray} from "./2d-array";
+import {Ship} from "./ship";
 
 function Gameboard(placePlayerShips) {
   const Arr = [];
@@ -93,4 +92,4 @@ function Gameboard(placePlayerShips) {
   };
 }
 
-module.exports = Gameboard;
+export {Gameboard};

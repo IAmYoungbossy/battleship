@@ -14,4 +14,4 @@ function getShipCoordinates(array, length, align) {
   return shipCoordinates;
 }
 
-module.exports = getShipCoordinates;
+export {getShipCoordinates};

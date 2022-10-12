@@ -1,4 +1,4 @@
-const createDomElement = require("./helper-function");
+import {createDomElement} from "./helper-function";
 
 function createFooter() {
   const footer = createDomElement("footer");
@@ -11,4 +11,4 @@ function createFooter() {
   document.body.appendChild(footer);
 }
 
-module.exports = createFooter;
+export  {createFooter};

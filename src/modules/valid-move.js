@@ -22,4 +22,4 @@ function checkValidMove(ship, boardArray) {
   return domBoardArrray;
 }
 
-module.exports = checkValidMove;
+export {checkValidMove};

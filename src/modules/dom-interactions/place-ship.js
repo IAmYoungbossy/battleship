@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
-const Gameboard = require("../gameboard");
-const { placePlayerShips } = require("../placeShipsOnBoard");
+import {Gameboard} from "../gameboard";
+import { placePlayerShips } from "../placeShipsOnBoard";
 
 /** Gets ships coordinates from Gameboard and display in DOM */
 function showShipsOnBoard(className) {
@@ -53,4 +53,4 @@ function createPlayBtn() {
   return { startBtn, instruction };
 }
 
-module.exports = showShipsOnBoard;
+export {showShipsOnBoard};

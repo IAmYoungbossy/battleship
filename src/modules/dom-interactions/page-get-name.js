@@ -1,6 +1,6 @@
-const createFooter = require("./page-footer");
-const { getName } = require("./get-player-name");
-const createHeader = require("./page-header");
+import {createFooter} from "./page-footer";
+import { getName } from "./get-player-name";
+import {createHeader} from "./page-header";
 
 function renderGetNamePage() {
   createHeader("page-one-header");
@@ -8,4 +8,4 @@ function renderGetNamePage() {
   createFooter();
 }
 
-module.exports = { renderGetNamePage };
+export { renderGetNamePage };

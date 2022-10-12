@@ -1,6 +1,5 @@
-/* eslint-disable no-use-before-define */
-const showShipsOnBoard = require("./dom-interactions/place-ship");
-const { validShots } = require("./dom-interactions/player-vs-computer");
+import {showShipsOnBoard} from "./dom-interactions/place-ship";
+import { validShots } from "./dom-interactions/player-vs-computer";
 
 let count = 0;
 let count2 = 0;
@@ -49,4 +48,4 @@ function humanPlayers() {
   player("player2-grid", "player2-grid");
 }
 
-module.exports = humanPlayers;
+export {humanPlayers};

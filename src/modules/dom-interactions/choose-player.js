@@ -1,8 +1,8 @@
-const humanPlayers = require("../player");
-const createGameboard = require("./dom-gameboard");
-const createDomElement = require("./helper-function");
-const createInputElem = require("./name-input");
-const { playerShots } = require("./player-vs-computer");
+import {humanPlayers} from "../player";
+import {createGameboard} from "./dom-gameboard";
+import {createDomElement} from "./helper-function";
+import {createInputElem} from "./name-input";
+import { playerShots } from "./player-vs-computer";
 
 function choosePlayer(playerName) {
   const chooseDiv = createDomElement("div", { class: "choose-div" });
@@ -46,13 +46,11 @@ function insertBoard(alignShipDiv, chooseDiv, playerShot) {
 }
 
 function player2Name(chooseDiv, playerShot, alignShipDiv) {
-  const input = document.querySelector("input");
   const { inputDiv, startBtn, nameInput } = createInputElem(
     "Enter 2nd Player's Name",
     "Continue",
   );
   document.body.replaceChild(inputDiv, chooseDiv);
-  input.classList.add("second-input");
   startBtn.addEventListener(
     "click",
     player1Board.bind(null, nameInput, inputDiv, playerShot, alignShipDiv),
@@ -60,8 +58,10 @@ function player2Name(chooseDiv, playerShot, alignShipDiv) {
 }
 
 function player1Board(nameInput, inputDiv, playerShot, alignShipDiv) {
+  const input = document.querySelector("input");
+  input.classList.add("second-input");
   localStorage.setItem("player2Name", JSON.stringify(`${nameInput.value}`));
   insertBoard(alignShipDiv, inputDiv, playerShot);
 }
 
-module.exports = choosePlayer;
+export {choosePlayer};

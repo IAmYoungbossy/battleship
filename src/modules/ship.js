@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-syntax */
-const getShipCoordinates = require("./getShipCoordinates");
+import {getShipCoordinates} from "./getShipCoordinates";
 
 function Ship(array, length, align) {
   const shipCoord = getShipCoordinates(array, length, align);
@@ -13,4 +13,4 @@ function Ship(array, length, align) {
   return { shipCoord, isSunk };
 }
 
-module.exports = Ship;
+export {Ship};

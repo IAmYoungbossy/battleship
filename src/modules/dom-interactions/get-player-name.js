@@ -1,5 +1,5 @@
-const choosePlayer = require("./choose-player");
-const createInputElem = require("./name-input");
+import {choosePlayer} from "./choose-player";
+import {createInputElem} from "./name-input";
 
 function getName(nameDetails) {
   const { inputDiv, startBtn, nameInput } = createInputElem(
@@ -20,4 +20,4 @@ function getInputValue(startBtn, nameInput) {
   startBtn.addEventListener("click", replaceNameDiv);
 }
 
-module.exports = { getName };
+export { getName };
