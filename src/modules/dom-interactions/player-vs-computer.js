@@ -7,7 +7,7 @@ let time = 0;
 function shots(showShips, className) {
   const playerBoard = document.querySelectorAll(`.${className}`);
   const { receiveAttack, allShipsSunk } = showShips();
-  const [receiveAttack2, , allShipsSunk2] = showShipsOnBoard("player1-grid");
+  const [receiveAttack2, , allShipsSunk2] = showShipsOnBoard.call(document, "player1-grid");
   const addListenerToGrid = (grid, index) => grid.addEventListener(
     "click",
     alternateShots.bind(

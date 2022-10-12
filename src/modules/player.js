@@ -1,4 +1,4 @@
-import {showShipsOnBoard} from "./dom-interactions/place-ship";
+import { showShipsOnBoard } from "./dom-interactions/place-ship";
 import { validShots } from "./dom-interactions/player-vs-computer";
 
 let count = 0;
@@ -8,37 +8,41 @@ let count2 = 0;
 function player(className, className2) {
   const playerBoard = document.querySelectorAll(`.${className}`);
   const [receiveAttack, Arr, allShipsSunk] = showShipsOnBoard(className2);
-  const addListenerToGrid = (grid, index) => grid.addEventListener(
-    "click",
-    shots.bind(
-      null,
-      Arr,
-      grid,
-      index,
-      receiveAttack,
-      playerBoard,
-      allShipsSunk,
-    ),
-  );
+  const addListenerToGrid = (grid, index) =>
+    grid.addEventListener(
+      "click",
+      shots.bind(
+        null,
+        Arr,
+        grid,
+        index,
+        receiveAttack,
+        playerBoard,
+        allShipsSunk
+      )
+    );
   playerBoard.forEach(addListenerToGrid);
 }
 
 /** Shots by player */
-function shots(
-  Arr,
-  grid,
-  index,
-  receiveAttack,
-  playerBoard,
-  allShipsSunk,
-) {
+function shots(Arr, grid, index, receiveAttack, playerBoard, allShipsSunk) {
+  const player1 = document.querySelector(".player1-board");
+  const player2 = document.querySelector(".player2-board");
   if (Array.from(grid.classList).includes("shots")) return;
   if (grid.classList[0] === "player1-grid" && Arr.length >= 5) {
-    if (count >= 1) validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
+    if (count >= 1) {
+      if (Array.from(player1.classList).includes("hide")) return;
+      if (Array.from(player2.classList).includes("hide")) return;
+      validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
+    }
     count += 1;
   }
   if (grid.classList[0] === "player2-grid" && Arr.length >= 5) {
-    if (count2 >= 1) validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
+    if (count2 >= 1) {
+      if (Array.from(player1.classList).includes("hide")) return;
+      if (Array.from(player2.classList).includes("hide")) return;
+      validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
+    }
     count2 += 1;
   }
 }
@@ -48,4 +52,4 @@ function humanPlayers() {
   player("player2-grid", "player2-grid");
 }
 
-export {humanPlayers};
+export { humanPlayers };

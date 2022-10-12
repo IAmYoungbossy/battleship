@@ -40,6 +40,7 @@ h1 {
 
 .align-ships {
   text-align: center;
+  position: relative;
 }
 
 label {
@@ -114,7 +115,7 @@ input {
   background-color: rgb(255, 183, 183);
 }
 
-.player2-board {
+.hide {
   position: absolute;
   visibility: hidden;
 }

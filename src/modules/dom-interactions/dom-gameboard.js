@@ -12,7 +12,7 @@ function createGameboard() {
   };
   boardContainer.append(
     grids("player1-board", "player1-grid space"),
-    grids("player2-board", "player2-grid space"),
+    grids("player2-board hide", "player2-grid space"),
   );
   return { boardContainer };
 }
