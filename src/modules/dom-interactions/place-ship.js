@@ -1,6 +1,7 @@
 /* eslint-disable no-use-before-define */
 import { Gameboard } from "../gameboard";
 import { placePlayerShips } from "../placeShipsOnBoard";
+import { restart } from "./page-get-name";
 
 /** Gets ships coordinates from Gameboard and display in DOM */
 function showShipsOnBoard(className) {
@@ -44,10 +45,7 @@ function addBgColor(index, positionShip, board, squares, Arr, instruction2) {
     if (item === 1) squares[index2].classList.add("ship");
   });
 
-  if (
-    player1.classList[1] === "hide" ||
-    player2.classList[1] === "hide"
-  ) {
+  if (player1.classList[1] === "hide" || player2.classList[1] === "hide") {
     if (Arr.length === 5 && this === document) showEnemyWater();
     else if (Arr.length === 5) {
       if (this.classList[0] === "player2-grid")
@@ -98,6 +96,7 @@ function showEnemy() {
     });
     instruction2.textContent = `${playerName}, take a shot.`;
     player1.classList.remove("hide");
+    restart();
   };
 
   if (this.classList[0] === "player1-grid")
