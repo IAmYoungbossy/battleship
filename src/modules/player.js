@@ -30,11 +30,15 @@ function player(className, className2) {
 function shots(Arr, grid, index, receiveAttack, playerBoard, allShipsSunk) {
   const player1 = document.querySelector(".player1-board");
   const player2 = document.querySelector(".player2-board");
+  const playerName1 = JSON.parse(localStorage.getItem("playerName"));
+  const playerName2 = JSON.parse(localStorage.getItem("player2Name"));
+  const instruction2 = document.querySelector(".instruction2");
   if (Array.from(grid.classList).includes("shots")) return;
   if (grid.classList[0] === "player1-grid" && Arr.length >= 5) {
     if (count >= 1 && time === 0) {
       if (Array.from(player1.classList).includes("hide")) return;
       if (Array.from(player2.classList).includes("hide")) return;
+      instruction2.textContent = `${playerName1}, take your shot.`;
       validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
     }
     time = 1;
@@ -44,6 +48,7 @@ function shots(Arr, grid, index, receiveAttack, playerBoard, allShipsSunk) {
     if (count2 >= 1 && time === 1) {
       if (Array.from(player1.classList).includes("hide")) return;
       if (Array.from(player2.classList).includes("hide")) return;
+      instruction2.textContent = `${playerName2}, take your shot.`;
       validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
     }
     time = 0;

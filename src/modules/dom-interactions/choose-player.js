@@ -19,7 +19,7 @@ function choosePlayer(playerName) {
   playHuman.textContent = "PLAY HUMAN";
   instruction2.textContent = "PLACE YOUR SHIPS FOR BATTLE";
   axisBtn.textContent = "X AXIS";
-  continueBtn.textContent = "Continua";
+  continueBtn.textContent = "Next";
   btnDiv.append(playAi, playHuman);
   alignShipDiv.append(instruction2, axisBtn, continueBtn);
   instruction.textContent = `${playerName}, Choose Your Enemy.`;

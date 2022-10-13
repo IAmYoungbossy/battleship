@@ -44,13 +44,18 @@ function addBgColor(index, positionShip, board, squares, Arr, instruction2) {
     if (item === 1) squares[index2].classList.add("ship");
   });
 
-  if (Arr.length === 5 && this === document) showEnemyWater();
-  else if (Arr.length === 5) {
-    if (this.classList[0] === "player2-grid")
-      instruction2.textContent = "CLICK ON NEXT TO START PLAYING";
-    if (this.classList[0] === "player1-grid")
-      instruction2.textContent = "CLICK ON NEXT TO CONTINUE";
-    showEnemy.call(this);
+  if (
+    player1.classList[1] === "hide" ||
+    player2.classList[1] === "hide"
+  ) {
+    if (Arr.length === 5 && this === document) showEnemyWater();
+    else if (Arr.length === 5) {
+      if (this.classList[0] === "player2-grid")
+        instruction2.textContent = "CLICK ON NEXT TO START PLAYING";
+      if (this.classList[0] === "player1-grid")
+        instruction2.textContent = "CLICK ON NEXT TO CONTINUE";
+      showEnemy.call(this);
+    }
   }
 
   if (Array.from(player1.classList).includes("hide")) return;
@@ -63,20 +68,16 @@ function addBgColor(index, positionShip, board, squares, Arr, instruction2) {
 }
 
 function showEnemy() {
+  const playerName = JSON.parse(localStorage.getItem("player2Name"));
+  const instruction2 = document.querySelector(".instruction2");
   const player2 = document.querySelector(".player2-board");
   const player1 = document.querySelector(".player1-board");
-  const { startBtn, continueBtn } = createPlayBtn(
-    "Continue to the next level",
-    "Continue"
-  );
-
+  const grid = document.querySelectorAll(".player1-grid");
+  const { startBtn, continueBtn } = createPlayBtn();
   continueBtn.classList.remove("hide");
   startBtn.classList.add("hide");
-  const showShips = () => {
-    const playerName = JSON.parse(localStorage.getItem("player2Name"));
-    const instruction2 = document.querySelector(".instruction2");
-    const grid = document.querySelectorAll(".player1-grid");
 
+  const showShips = () => {
     instruction2.textContent = `${playerName}, Place Your Ships.`;
     player2.classList.remove("hide");
     player1.classList.add("hide");
@@ -95,6 +96,7 @@ function showEnemy() {
       if (Array.from(sqr.classList).includes("ship"))
         sqr.classList.remove("ship");
     });
+    instruction2.textContent = `${playerName}, take a shot.`;
     player1.classList.remove("hide");
   };
 
