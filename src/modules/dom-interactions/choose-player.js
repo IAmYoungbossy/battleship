@@ -50,7 +50,7 @@ function insertBoard(alignShipDiv, chooseDiv, playerShot) {
 
 function player2Name(chooseDiv, playerShot, alignShipDiv) {
   const { inputDiv, startBtn, nameInput } = createInputElem(
-    "Enter 2nd Player's Name",
+    "Enter Human Name",
     "Continue",
   );
   document.body.replaceChild(inputDiv, chooseDiv);

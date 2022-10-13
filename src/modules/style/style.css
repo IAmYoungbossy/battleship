@@ -10,7 +10,13 @@ body {
   flex-direction: column;
   height: 100vh;
   align-items: center;
-  background-color: darkcyan;
+  background: radial-gradient(
+    circle at 100%,
+    #341406e8,
+    #333 50%,
+    #0f1017 75%,
+    #123 75%
+  );
 }
 
 header {
@@ -24,7 +30,7 @@ header {
 h1 {
   text-align: center;
   font-size: 8rem;
-  color: darkslategrey;
+  color: #715f36;
 }
 
 .h1 {
@@ -32,6 +38,7 @@ h1 {
 }
 
 .instruction2 {
+  color: aqua;
   text-transform: uppercase;
 }
 
@@ -54,6 +61,7 @@ label {
 
 input {
   padding: 15px;
+  border-radius: 10px;
 }
 
 .second-input {
@@ -70,7 +78,7 @@ input {
   margin-top: 100px;
 }
 
-.choose-div>p {
+.choose-div > p {
   font-size: 2rem;
   text-transform: capitalize;
   color: aquamarine;
@@ -93,25 +101,29 @@ input {
 
 .board-container {
   display: flex;
-  width: min-content;
   margin: auto;
-  gap: 125px;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .player1-board,
 .player2-board {
+  backdrop-filter: brightness(0.7);
   padding: 1px;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   gap: 1px;
   width: 450px;
   height: 450px;
-  border: 1px solid black;
+  margin: auto;
+  border: 1px solid #f2f2f2;
 }
 
 .player1-grid,
 .player2-grid {
-  border: 1px solid black;
+  border: 1px solid #f8f8f8;
 }
 
 .player1-grid:hover,
@@ -130,7 +142,7 @@ input {
 }
 
 .ship {
-  background-color: rgb(51 15 15) !important;
+  background-color: #00ffff70 !important;
 }
 
 .shots {
@@ -150,6 +162,6 @@ footer {
   padding: 15px;
   margin-top: auto;
   text-align: center;
-  background-color: white;
+  background-color: #bba7a7;
   width: -webkit-fill-available;
 }
