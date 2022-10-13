@@ -107,15 +107,14 @@ function showEnemy() {
 
 function showEnemyWater() {
   const player = document.querySelector(".player2-board");
-  const { startBtn, instruction } = createPlayBtn(
-    "Press Play To Start.",
-    "Play"
-  );
+  const { startBtn, instruction } = createPlayBtn();
+  instruction.textContent = "CLICK PLAY TO START PLAYING";
+  startBtn.textContent = "Play";
   const showShips = () => {
     const playerName = JSON.parse(localStorage.getItem("playerName"));
     player.classList.remove("hide");
     instruction.textContent = `Waiting for ${playerName}'s shot`;
-    startBtn.textContent = "RESTART GAME";
+    restart();
   };
   startBtn.addEventListener("click", showShips);
 }

@@ -14,10 +14,11 @@ function choosePlayer(playerName) {
   const instruction2 = createDomElement("p", { class: "instruction2" });
   const axisBtn = createDomElement("button", { class: "axis-btn" });
   const continueBtn = createDomElement("button", { class: "continue-btn hide" });
+  const playName = JSON.parse(localStorage.getItem("playerName"));
+  instruction2.textContent = `${playName}, Place Your Ships.`;
 
   playAi.textContent = "PLAY AI";
   playHuman.textContent = "PLAY HUMAN";
-  instruction2.textContent = "PLACE YOUR SHIPS FOR BATTLE";
   axisBtn.textContent = "X AXIS";
   continueBtn.textContent = "Next";
   btnDiv.append(playAi, playHuman);
