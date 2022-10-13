@@ -3,6 +3,7 @@ import { validShots } from "./dom-interactions/player-vs-computer";
 
 let count = 0;
 let count2 = 0;
+let time = 1;
 
 /** Checks for valid shots on ships */
 function player(className, className2) {
@@ -31,19 +32,21 @@ function shots(Arr, grid, index, receiveAttack, playerBoard, allShipsSunk) {
   const player2 = document.querySelector(".player2-board");
   if (Array.from(grid.classList).includes("shots")) return;
   if (grid.classList[0] === "player1-grid" && Arr.length >= 5) {
-    if (count >= 1) {
+    if (count >= 1 && time === 0) {
       if (Array.from(player1.classList).includes("hide")) return;
       if (Array.from(player2.classList).includes("hide")) return;
       validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
     }
+    time = 1;
     count += 1;
   }
   if (grid.classList[0] === "player2-grid" && Arr.length >= 5) {
-    if (count2 >= 1) {
+    if (count2 >= 1 && time === 1) {
       if (Array.from(player1.classList).includes("hide")) return;
       if (Array.from(player2.classList).includes("hide")) return;
       validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
     }
+    time = 0;
     count2 += 1;
   }
 }
