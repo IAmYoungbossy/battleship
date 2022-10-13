@@ -130,11 +130,12 @@ input {
 }
 
 .ship {
-  background-color: rgb(76, 56, 56) !important;
+  background-color: rgb(51 15 15) !important;
 }
 
 .shots {
-  background-color: rgb(159, 46, 211) !important;
+  border-radius: 40px;
+  background-color: white !important;
 }
 
 .valid-shot {
