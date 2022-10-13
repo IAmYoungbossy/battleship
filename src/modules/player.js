@@ -7,7 +7,8 @@ let count2 = 0;
 /** Checks for valid shots on ships */
 function player(className, className2) {
   const playerBoard = document.querySelectorAll(`.${className}`);
-  const [receiveAttack, Arr, allShipsSunk] = showShipsOnBoard(className2);
+  const pla = document.querySelectorAll(`.${className2}`);
+  const [receiveAttack, Arr, allShipsSunk] = showShipsOnBoard.call(pla[0], className2);
   const addListenerToGrid = (grid, index) =>
     grid.addEventListener(
       "click",
