@@ -31,6 +31,10 @@ h1 {
   font-size: 4rem;
 }
 
+.instruction2 {
+  text-transform: uppercase;
+}
+
 .input-div {
   display: flex;
   flex-direction: column;
