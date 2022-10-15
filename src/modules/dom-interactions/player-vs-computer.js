@@ -2,7 +2,9 @@ import { showShipsOnBoard } from "./place-ship";
 import { showShipsRandomly } from "./place-ship-random";
 
 let hit;
+let index2;
 let time = 0;
+let isSunkShipArray;
 let possibleValidShots;
 let visitedIndex = null;
 
@@ -91,7 +93,7 @@ function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk) {
   isSunkShip(ship3Sunk, ship3Coord, playerBoard);
   isSunkShip(ship2Sunk, ship2Coord, playerBoard);
   isSunkShip(ship1Sunk, ship1Coord, playerBoard);
-
+  isSunkShipArray = [ship5Sunk, ship4Sunk, ship3Sunk, ship2Sunk, ship1Sunk];
   return { hitCoord };
 }
 
@@ -112,11 +114,16 @@ function computerShots() {
   };
   playerBoard2.forEach(push);
   const ranNum = Math.floor(Math.random() * (arrIndex.length - 1));
-  let index2 = arrIndex[ranNum];
+  index2 = arrIndex[ranNum];
+  findValidShots(arrIndex, ranNum);
+  const grid2 = playerBoard2[index2];
+  grid2.classList.remove("space");
+  return { grid2, index2, playerBoard2 };
+}
 
+function findValidShots(arrIndex, ranNum) {
   if (hit && visitedIndex >= 1) {
     visitedIndex = visitedIndex - 1;
-    console.log(visitedIndex);
     if (visitedIndex === 0) {
       index2 = +possibleValidShots[0] - 1;
       possibleValidShots.splice(visitedIndex, 1, index2);
@@ -134,8 +141,6 @@ function computerShots() {
       possibleValidShots.splice(visitedIndex, 1, index2);
     }
     visitedIndex++;
-    console.log(index2);
-    console.log("Two");
   }
   if (hit && visitedIndex === null) {
     const splitHit = hit[0].split("");
@@ -146,23 +151,17 @@ function computerShots() {
       +splitHit[0] - 1 + splitHit[1],
     ];
     visitedIndex = 0;
-    console.log(visitedIndex);
     index2 = +possibleValidShots[visitedIndex];
-    console.log(index2);
     visitedIndex++;
-    console.log(possibleValidShots);
   }
   if (hit === undefined && visitedIndex >= 1 && visitedIndex < 4) {
-    console.log(visitedIndex);
     index2 = +possibleValidShots[visitedIndex];
-    console.log(index2);
     visitedIndex++;
-    console.log("One");
   }
-
-  const grid2 = playerBoard2[index2];
-  grid2.classList.remove("space");
-  return { grid2, index2, playerBoard2 };
+  if (isSunkShipArray && isSunkShipArray.includes(true)) {
+    index2 = arrIndex[ranNum];
+    visitedIndex = null;
+  }
 }
 
 const playerShots = shots.bind(null, showShipsRandomly, "player2-grid");
