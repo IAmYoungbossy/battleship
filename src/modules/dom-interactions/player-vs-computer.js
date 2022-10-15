@@ -1,26 +1,33 @@
-import {showShipsOnBoard} from "./place-ship";
-import {showShipsRandomly} from "./place-ship-random";
+import { showShipsOnBoard } from "./place-ship";
+import { showShipsRandomly } from "./place-ship-random";
 
+let hit;
 let time = 0;
+let possibleValidShots;
+let visitedIndex = null;
 
 /** Checks for valid shots on ships */
 function shots(showShips, className) {
   const playerBoard = document.querySelectorAll(`.${className}`);
   const { receiveAttack, allShipsSunk } = showShips();
-  const [receiveAttack2, , allShipsSunk2] = showShipsOnBoard.call(document, "player1-grid");
-  const addListenerToGrid = (grid, index) => grid.addEventListener(
-    "click",
-    alternateShots.bind(
-      null,
-      grid,
-      index,
-      receiveAttack,
-      receiveAttack2,
-      playerBoard,
-      allShipsSunk,
-      allShipsSunk2,
-    ),
+  const [receiveAttack2, , allShipsSunk2] = showShipsOnBoard.call(
+    document,
+    "player1-grid"
   );
+  const addListenerToGrid = (grid, index) =>
+    grid.addEventListener(
+      "click",
+      alternateShots.bind(
+        null,
+        grid,
+        index,
+        receiveAttack,
+        receiveAttack2,
+        playerBoard,
+        allShipsSunk,
+        allShipsSunk2
+      )
+    );
   playerBoard.forEach(addListenerToGrid);
 }
 
@@ -32,7 +39,7 @@ function alternateShots(
   receiveAttack2,
   playerBoard,
   allShipsSunk,
-  allShipsSunk2,
+  allShipsSunk2
 ) {
   if (Array.from(grid.classList).includes("shots")) return;
   if (time === 1) return;
@@ -46,7 +53,14 @@ function alternateShots(
     time = 0;
     const playerName = JSON.parse(localStorage.getItem("playerName"));
     instruction.textContent = `Waiting for ${playerName}'s Shot.`;
-    validShots(grid2, index2, receiveAttack2, playerBoard2, allShipsSunk2);
+    const { hitCoord } = validShots(
+      grid2,
+      index2,
+      receiveAttack2,
+      playerBoard2,
+      allShipsSunk2
+    );
+    hit = hitCoord;
   }, 1500);
 }
 
@@ -77,13 +91,16 @@ function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk) {
   isSunkShip(ship3Sunk, ship3Coord, playerBoard);
   isSunkShip(ship2Sunk, ship2Coord, playerBoard);
   isSunkShip(ship1Sunk, ship1Coord, playerBoard);
+
+  return { hitCoord };
 }
 
 /** Adds blue background colour when a ship is completely sunk */
 function isSunkShip(shipSunk, shipCoord, playerBoard) {
-  const addBlueBg = (item) => playerBoard.forEach((square, index) => {
-    if (+item.join("") === index) square.classList.add("sunk-ship");
-  });
+  const addBlueBg = (item) =>
+    playerBoard.forEach((square, index) => {
+      if (+item.join("") === index) square.classList.add("sunk-ship");
+    });
   if (shipSunk === true) shipCoord.forEach(addBlueBg);
 }
 
@@ -95,7 +112,54 @@ function computerShots() {
   };
   playerBoard2.forEach(push);
   const ranNum = Math.floor(Math.random() * (arrIndex.length - 1));
-  const index2 = arrIndex[ranNum];
+  let index2 = arrIndex[ranNum];
+
+  if (hit && visitedIndex >= 1) {
+    visitedIndex = visitedIndex - 1;
+    console.log(visitedIndex);
+    if (visitedIndex === 0) {
+      index2 = +possibleValidShots[0] - 1;
+      possibleValidShots.splice(visitedIndex, 1, index2);
+    }
+    if (visitedIndex === 1) {
+      index2 = +possibleValidShots[1] + 1;
+      possibleValidShots.splice(visitedIndex, 1, index2);
+    }
+    if (visitedIndex === 2) {
+      index2 = +possibleValidShots[2] + 10;
+      possibleValidShots.splice(visitedIndex, 1, index2);
+    }
+    if (visitedIndex === 3) {
+      index2 = +possibleValidShots[3] - 10;
+      possibleValidShots.splice(visitedIndex, 1, index2);
+    }
+    visitedIndex++;
+    console.log(index2);
+    console.log("Two");
+  }
+  if (hit && visitedIndex === null) {
+    const splitHit = hit[0].split("");
+    possibleValidShots = [
+      splitHit[0] + (+splitHit[1] - 1),
+      splitHit[0] + (+splitHit[1] + 1),
+      +splitHit[0] + 1 + splitHit[1],
+      +splitHit[0] - 1 + splitHit[1],
+    ];
+    visitedIndex = 0;
+    console.log(visitedIndex);
+    index2 = +possibleValidShots[visitedIndex];
+    console.log(index2);
+    visitedIndex++;
+    console.log(possibleValidShots);
+  }
+  if (hit === undefined && visitedIndex >= 1 && visitedIndex < 4) {
+    console.log(visitedIndex);
+    index2 = +possibleValidShots[visitedIndex];
+    console.log(index2);
+    visitedIndex++;
+    console.log("One");
+  }
+
   const grid2 = playerBoard2[index2];
   grid2.classList.remove("space");
   return { grid2, index2, playerBoard2 };
