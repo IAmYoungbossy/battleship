@@ -5,8 +5,8 @@ let hit;
 let index2;
 let time = 0;
 let isSunkShipArray;
-let possibleValidShots;
 let visitedIndex = null;
+let possibleValidShots = [];
 
 /** Checks for valid shots on ships */
 function shots(showShips, className) {
@@ -86,8 +86,9 @@ function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk) {
   } = receiveAttack(axis);
 
   if (allShipsSunk()) console.log("Works");
-  grid.classList.add("shots");
+  if (grid) grid.classList.add("shots");
   if (hitCoord) grid.classList.add("valid-shot");
+
   isSunkShip(ship5Sunk, ship5Coord, playerBoard);
   isSunkShip(ship4Sunk, ship4Coord, playerBoard);
   isSunkShip(ship3Sunk, ship3Coord, playerBoard);
@@ -115,9 +116,9 @@ function computerShots() {
   playerBoard2.forEach(push);
   const ranNum = Math.floor(Math.random() * (arrIndex.length - 1));
   index2 = arrIndex[ranNum];
-  findValidShots(arrIndex, ranNum);
+  findValidShots(arrIndex, ranNum, playerBoard2);
   const grid2 = playerBoard2[index2];
-  grid2.classList.remove("space");
+  if (grid2) grid2.classList.remove("space");
   return { grid2, index2, playerBoard2 };
 }
 
@@ -140,6 +141,9 @@ function findValidShots(arrIndex, ranNum) {
       index2 = +possibleValidShots[3] - 10;
       possibleValidShots.splice(visitedIndex, 1, index2);
     }
+    if (+index2 < 0 || +index2 > 99 || isNaN(+index2) || index2 === "010")
+      visitedIndex++;
+    index2 = +possibleValidShots[visitedIndex];
     visitedIndex++;
   }
   if (hit && visitedIndex === null) {
@@ -151,14 +155,26 @@ function findValidShots(arrIndex, ranNum) {
       +splitHit[0] - 1 + splitHit[1],
     ];
     visitedIndex = 0;
+    index2 = possibleValidShots[visitedIndex];
+    if (+index2 < 0 || +index2 > 99 || isNaN(+index2) || index2 === "010")
+      visitedIndex++;
     index2 = +possibleValidShots[visitedIndex];
     visitedIndex++;
   }
+
   if (hit === undefined && visitedIndex >= 1 && visitedIndex < 4) {
+    index2 = possibleValidShots[visitedIndex];
+    if (+index2 < 0 || +index2 > 99 || isNaN(+index2) || index2 === "010")
+      visitedIndex++;
+    index2 = possibleValidShots[visitedIndex];
+    if (+index2 < 0 || +index2 > 99 || isNaN(+index2) || index2 === "010")
+      visitedIndex++;
     index2 = +possibleValidShots[visitedIndex];
     visitedIndex++;
   }
+
   if (isSunkShipArray && isSunkShipArray.includes(true)) {
+    possibleValidShots.splice(0);
     index2 = arrIndex[ranNum];
     visitedIndex = null;
   }
