@@ -131,6 +131,14 @@ input {
   background-color: rgb(255, 183, 183);
 }
 
+.red:hover {
+  background-color: red;
+}
+
+.grey {
+  background-color: rgb(255, 183, 183) !important;
+}
+
 .hide {
   position: absolute;
   visibility: hidden;
