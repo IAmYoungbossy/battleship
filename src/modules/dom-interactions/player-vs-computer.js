@@ -122,7 +122,7 @@ function computerShots() {
   return { grid2, index2, playerBoard2 };
 }
 
-function findValidShots(arrIndex, ranNum) {
+function findValidShots(arrIndex, ranNum, playerBoard2) {
   if (hit && visitedIndex >= 1) {
     visitedIndex = visitedIndex - 1;
     if (visitedIndex === 0) {
@@ -141,8 +141,15 @@ function findValidShots(arrIndex, ranNum) {
       index2 = +possibleValidShots[3] - 10;
       possibleValidShots.splice(visitedIndex, 1, index2);
     }
-    if (+index2 < 0 || +index2 > 99 || isNaN(+index2) || index2 === "010")
+    if (
+      +index2 < 0 ||
+      +index2 > 99 ||
+      isNaN(+index2) ||
+      index2 === "010" ||
+      Array.from(playerBoard2[+index2].classList).includes("shots")
+    ) {
       visitedIndex++;
+    }
     index2 = +possibleValidShots[visitedIndex];
     visitedIndex++;
   }
@@ -156,19 +163,50 @@ function findValidShots(arrIndex, ranNum) {
     ];
     visitedIndex = 0;
     index2 = possibleValidShots[visitedIndex];
-    if (+index2 < 0 || +index2 > 99 || isNaN(+index2) || index2 === "010")
+    if (
+      +index2 < 0 ||
+      +index2 > 99 ||
+      isNaN(+index2) ||
+      index2 === "010" ||
+      Array.from(playerBoard2[+index2].classList).includes("shots")
+    ) {
       visitedIndex++;
+    }
+    index2 = possibleValidShots[visitedIndex];
+    if (
+      +index2 < 0 ||
+      +index2 > 99 ||
+      isNaN(+index2) ||
+      index2 === "010" ||
+      Array.from(playerBoard2[+index2].classList).includes("shots")
+    ) {
+      visitedIndex++;
+    }
     index2 = +possibleValidShots[visitedIndex];
     visitedIndex++;
   }
 
   if (hit === undefined && visitedIndex >= 1 && visitedIndex < 4) {
     index2 = possibleValidShots[visitedIndex];
-    if (+index2 < 0 || +index2 > 99 || isNaN(+index2) || index2 === "010")
+    if (
+      +index2 < 0 ||
+      +index2 > 99 ||
+      isNaN(+index2) ||
+      index2 === "010" ||
+      Array.from(playerBoard2[+index2].classList).includes("shots")
+    ) {
       visitedIndex++;
+    }
     index2 = possibleValidShots[visitedIndex];
-    if (+index2 < 0 || +index2 > 99 || isNaN(+index2) || index2 === "010")
+    if (
+      +index2 < 0 ||
+      +index2 > 99 ||
+      isNaN(+index2) ||
+      index2 === "010" ||
+      Array.from(playerBoard2[+index2].classList).includes("shots")
+    ) {
       visitedIndex++;
+    }
     index2 = +possibleValidShots[visitedIndex];
     visitedIndex++;
   }
