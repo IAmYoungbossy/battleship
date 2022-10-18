@@ -102,37 +102,52 @@ function addHover(className) {
         index4 = `${+`${axis[0]}${axis[1]}` + 30}`;
         index5 = `${+`${axis[0]}${axis[1]}` + 40}`;
       }
+
       if (lengthOfShip === 5) {
-        if (index1 && index1.length === 2) indexArr.push(index1);
-        if (index2 && index2.length === 2) indexArr.push(index2);
-        if (index3 && index3.length === 2) indexArr.push(index3);
-        if (index4 && index4.length === 2) indexArr.push(index4);
-        if (index5 && index5.length === 2) indexArr.push(index5);
+        addOnlyValidSpace(index1, indexArr, playerBoard);
+        addOnlyValidSpace(index2, indexArr, playerBoard);
+        addOnlyValidSpace(index3, indexArr, playerBoard);
+        addOnlyValidSpace(index4, indexArr, playerBoard);
+        addOnlyValidSpace(index5, indexArr, playerBoard);
       }
       if (index1 && lengthOfShip === 4) {
-        if (index1 && index1.length === 2) indexArr.push(index1);
-        if (index2 && index2.length === 2) indexArr.push(index2);
-        if (index3 && index3.length === 2) indexArr.push(index3);
-        if (index4 && index4.length === 2) indexArr.push(index4);
+        addOnlyValidSpace(index1, indexArr, playerBoard);
+        addOnlyValidSpace(index2, indexArr, playerBoard);
+        addOnlyValidSpace(index3, indexArr, playerBoard);
+        addOnlyValidSpace(index4, indexArr, playerBoard);
       }
       if (lengthOfShip === 3) {
-        if (index1 && index1.length === 2) indexArr.push(index1);
-        if (index2 && index2.length === 2) indexArr.push(index2);
-        if (index3 && index3.length === 2) indexArr.push(index3);
+        addOnlyValidSpace(index1, indexArr, playerBoard);
+        addOnlyValidSpace(index2, indexArr, playerBoard);
+        addOnlyValidSpace(index3, indexArr, playerBoard);
       }
       if (lengthOfShip === 2) {
-        if (index1 && index1.length === 2) indexArr.push(index1);
-        if (index2 && index2.length === 2) indexArr.push(index2);
+        addOnlyValidSpace(index1, indexArr, playerBoard);
+        addOnlyValidSpace(index2, indexArr, playerBoard);
       }
       const addHoverEffect = (index) =>
         playerBoard[+index].classList.add("grey");
-      if (indexArr.length > counter - 1) indexArr.forEach(addHoverEffect);
+      let counter2 = counter;
+      if (counter <= 2) counter2 = counter + 1;
+      if (indexArr.length === counter2) {
+        indexArr.forEach(addHoverEffect);
+      }
     };
     grid.addEventListener("click", setShipLength);
     grid.addEventListener("mouseenter", addToIndexArr);
     grid.addEventListener("mouseleave", emptyIndexArr);
   }
 }
+
+function addOnlyValidSpace(index, indexArr, playerBoard) {
+  if (index && index.length === 2) indexArr.push(index);
+  if (
+    playerBoard[+index] &&
+    Array.from(playerBoard[+index].classList).includes("ship")
+  )
+    indexArr.pop();
+}
+
 function player2Name(chooseDiv, playerShot, alignShipDiv) {
   const { inputDiv, startBtn, nameInput } = createInputElem(
     "Enter Human Name",
