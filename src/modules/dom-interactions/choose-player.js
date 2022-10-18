@@ -86,7 +86,6 @@ function addHover(className) {
     };
     const addToIndexArr = () => {
       const axisBtn = document.querySelector(".axis-btn");
-      grid.classList.add("red");
       let index1, index2, index3, index4, index5;
       if (axisBtn && axisBtn.textContent === "X AXIS") {
         index1 = `${axis[0]}${axis[1]}`;
@@ -94,6 +93,7 @@ function addHover(className) {
         index3 = `${axis[0]}${+axis[1] + 2}`;
         index4 = `${axis[0]}${+axis[1] + 3}`;
         index5 = `${axis[0]}${+axis[1] + 4}`;
+        playerBoard[+index1].classList.add("red");
       }
       if (axisBtn && axisBtn.textContent === "Y AXIS") {
         index1 = `${axis[0]}${axis[1]}`;
@@ -101,6 +101,7 @@ function addHover(className) {
         index3 = `${+`${axis[0]}${axis[1]}` + 20}`;
         index4 = `${+`${axis[0]}${axis[1]}` + 30}`;
         index5 = `${+`${axis[0]}${axis[1]}` + 40}`;
+        playerBoard[+index1].classList.add("red");
       }
 
       if (lengthOfShip === 5) {
