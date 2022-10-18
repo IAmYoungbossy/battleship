@@ -2,7 +2,7 @@ import { showShipsOnBoard } from "./place-ship";
 import { showShipsRandomly } from "./place-ship-random";
 
 let hit, index2, time = 0, isSunkShipArray, visitedIndex = null, 
-  possibleValidShots = [], stopHere = 0;
+  possibleValidShots = [], stopHere = 0, firstHit;
 
 /** Checks for valid shots on ships */
 function shots(showShips, className) {
@@ -97,6 +97,7 @@ function computerShots() {
 }
 
 function findValidShots(arrIndex, ranNum, playerBoard2) {
+  console.log(hit);
   if (hit && visitedIndex >= 1) {
     visitedIndex = visitedIndex - 1;
     removeFromArray(0, +possibleValidShots[0] - 1);
@@ -107,6 +108,7 @@ function findValidShots(arrIndex, ranNum, playerBoard2) {
     visitedIndex++;
   }
   if (hit && visitedIndex === null) {
+    firstHit = +hit[0];
     const splitHit = hit[0].split("");
     possibleValidShots = [
       splitHit[0] + (+splitHit[1] - 1),
@@ -131,6 +133,7 @@ function findValidShots(arrIndex, ranNum, playerBoard2) {
     possibleValidShots.splice(0);
     index2 = arrIndex[ranNum];
     visitedIndex = null;
+    firstHit = null;
   }
 }
 function removeFromArray(index, expression) {
@@ -143,6 +146,14 @@ function increaseVisitedIndex(playerBoard2) {
   if (
     +index2 < 0 || +index2 > 99 || isNaN(+index2) || index2 === "010" ||
     Array.from(playerBoard2[+index2].classList).includes("shots")
+  ) {
+    visitedIndex++;
+  }
+  index2 = +possibleValidShots[visitedIndex];
+  if (
+    firstHit &&
+    Array.from(playerBoard2[+index2].classList).includes("ship") &&
+    playerBoard2[+index2].classList[3] !== playerBoard2[firstHit].classList[2]
   ) {
     visitedIndex++;
   }
