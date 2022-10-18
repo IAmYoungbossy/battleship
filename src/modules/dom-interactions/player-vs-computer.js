@@ -1,8 +1,14 @@
 import { showShipsOnBoard } from "./place-ship";
 import { showShipsRandomly } from "./place-ship-random";
 
-let hit, index2, time = 0, isSunkShipArray, visitedIndex = null, 
-  possibleValidShots = [], stopHere = 0, firstHit;
+let hit,
+  index2,
+  time = 0,
+  isSunkShipArray,
+  visitedIndex = null,
+  possibleValidShots = [],
+  stopHere = 0,
+  firstHit;
 
 /** Checks for valid shots on ships */
 function shots(showShips, className) {
@@ -16,8 +22,14 @@ function shots(showShips, className) {
     grid.addEventListener(
       "click",
       alternateShots.bind(
-        null, grid, index, receiveAttack, receiveAttack2,
-        playerBoard, allShipsSunk, allShipsSunk2
+        null,
+        grid,
+        index,
+        receiveAttack,
+        receiveAttack2,
+        playerBoard,
+        allShipsSunk,
+        allShipsSunk2
       )
     );
   playerBoard.forEach(addListenerToGrid);
@@ -25,40 +37,57 @@ function shots(showShips, className) {
 
 /** Alternate shots between computer and player */
 function alternateShots(
-  grid, index, receiveAttack, receiveAttack2, playerBoard,
-  allShipsSunk, allShipsSunk2
+  grid,
+  index,
+  receiveAttack,
+  receiveAttack2,
+  playerBoard,
+  allShipsSunk,
+  allShipsSunk2
 ) {
   const instruction = document.querySelector(".align-ships").children[0];
   if (Array.from(grid.classList).includes("shots")) return;
-  if (stopHere === 1) {
-    instruction.textContent = "game over.";
-    return;
-  }
+  if (stopHere === 1)  return;
   if (time === 1) return;
   time = 1;
   const { grid2, index2, playerBoard2 } = computerShots();
   instruction.textContent = "Waiting for Computer's Shot.";
-  validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
+  validShots(grid, index, receiveAttack, playerBoard, allShipsSunk, instruction);
 
   setTimeout(() => {
     time = 0;
     const playerName = JSON.parse(localStorage.getItem("playerName"));
+    if (stopHere === 1)  return;
     instruction.textContent = `Waiting for ${playerName}'s Shot.`;
     const { hitCoord } = validShots(
-      grid2, index2, receiveAttack2, playerBoard2, allShipsSunk2
+      grid2,
+      index2,
+      receiveAttack2,
+      playerBoard2,
+      allShipsSunk2,
+      instruction
     );
     hit = hitCoord;
   }, 1500);
 }
 
 /** Colours valid shots red */
-function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk) {
+function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk, instruction) {
   const axis = `${index}`.split("");
   if (axis.length === 1) axis.unshift("0");
 
   const {
-    hitCoord, ship5Sunk, ship4Sunk, ship3Sunk, ship2Sunk, ship1Sunk,
-    ship5Coord, ship4Coord, ship3Coord, ship2Coord, ship1Coord,
+    hitCoord,
+    ship5Sunk,
+    ship4Sunk,
+    ship3Sunk,
+    ship2Sunk,
+    ship1Sunk,
+    ship5Coord,
+    ship4Coord,
+    ship3Coord,
+    ship2Coord,
+    ship1Coord,
   } = receiveAttack(axis);
 
   if (grid) grid.classList.add("shots");
@@ -70,10 +99,13 @@ function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk) {
   isSunkShip(ship2Sunk, ship2Coord, playerBoard);
   isSunkShip(ship1Sunk, ship1Coord, playerBoard);
 
-  if (allShipsSunk()) stopHere = 1;
+  if (allShipsSunk()) {
+    instruction.textContent = "game over.";
+    stopHere = 1;
+  }
 
   isSunkShipArray = [ship5Sunk, ship4Sunk, ship3Sunk, ship2Sunk, ship1Sunk];
-  
+
   return { hitCoord };
 }
 
@@ -147,14 +179,18 @@ function removeFromArray(index, expression) {
 }
 function increaseVisitedIndex(playerBoard2) {
   if (
-    +index2 < 0 || +index2 > 99 || isNaN(+index2) || index2 === "010" ||
+    +index2 < 0 ||
+    +index2 > 99 ||
+    isNaN(+index2) ||
+    index2 === "010" ||
     Array.from(playerBoard2[+index2].classList).includes("shots")
   ) {
     visitedIndex++;
   }
   index2 = +possibleValidShots[visitedIndex];
   if (
-    firstHit && playerBoard2[+index2] &&
+    firstHit &&
+    playerBoard2[+index2] &&
     Array.from(playerBoard2[+index2].classList).includes("ship") &&
     playerBoard2[+index2].classList[3] !== playerBoard2[firstHit].classList[2]
   ) {

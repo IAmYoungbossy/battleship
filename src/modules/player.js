@@ -1,5 +1,5 @@
 import { showShipsOnBoard } from "./dom-interactions/place-ship";
-import { stopHere, validShots } from "./dom-interactions/player-vs-computer";
+import { validShots } from "./dom-interactions/player-vs-computer";
 
 let count = 0;
 let count2 = 0;
@@ -37,10 +37,6 @@ function shots(Arr, grid, index, receiveAttack, playerBoard, allShipsSunk) {
   const playerName2 = JSON.parse(localStorage.getItem("player2Name"));
   const instruction2 = document.querySelector(".instruction2");
 
-  if (stopHere === 1) {
-    instruction2.textContent = "game over.";
-    return;
-  }
   if (Array.from(grid.classList).includes("shots")) return;
   if (grid.classList[0] === "player1-grid" && Arr.length >= 5) {
     if (count >= 1 && time === 0) {
