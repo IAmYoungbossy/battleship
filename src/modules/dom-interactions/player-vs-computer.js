@@ -28,11 +28,15 @@ function alternateShots(
   grid, index, receiveAttack, receiveAttack2, playerBoard,
   allShipsSunk, allShipsSunk2
 ) {
+  const instruction = document.querySelector(".align-ships").children[0];
   if (Array.from(grid.classList).includes("shots")) return;
+  if (stopHere === 1) {
+    instruction.textContent = "game over.";
+    return;
+  }
   if (time === 1) return;
   time = 1;
   const { grid2, index2, playerBoard2 } = computerShots();
-  const instruction = document.querySelector(".align-ships").children[0];
   instruction.textContent = "Waiting for Computer's Shot.";
   validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
 
@@ -56,7 +60,7 @@ function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk) {
     hitCoord, ship5Sunk, ship4Sunk, ship3Sunk, ship2Sunk, ship1Sunk,
     ship5Coord, ship4Coord, ship3Coord, ship2Coord, ship1Coord,
   } = receiveAttack(axis);
-  if (stopHere === 1) return;
+
   if (grid) grid.classList.add("shots");
   if (hitCoord) grid.classList.add("valid-shot");
 
@@ -160,4 +164,4 @@ function increaseVisitedIndex(playerBoard2) {
 }
 
 const playerShots = shots.bind(null, showShipsRandomly, "player2-grid");
-export { playerShots, validShots };
+export { playerShots, validShots, stopHere };

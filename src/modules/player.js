@@ -1,5 +1,5 @@
 import { showShipsOnBoard } from "./dom-interactions/place-ship";
-import { validShots } from "./dom-interactions/player-vs-computer";
+import { stopHere, validShots } from "./dom-interactions/player-vs-computer";
 
 let count = 0;
 let count2 = 0;
@@ -9,7 +9,10 @@ let time = 1;
 function player(className, className2) {
   const playerBoard = document.querySelectorAll(`.${className}`);
   const pla = document.querySelectorAll(`.${className2}`);
-  const [receiveAttack, Arr, allShipsSunk] = showShipsOnBoard.call(pla[0], className2);
+  const [receiveAttack, Arr, allShipsSunk] = showShipsOnBoard.call(
+    pla[0],
+    className2
+  );
   const addListenerToGrid = (grid, index) =>
     grid.addEventListener(
       "click",
@@ -33,6 +36,11 @@ function shots(Arr, grid, index, receiveAttack, playerBoard, allShipsSunk) {
   const playerName1 = JSON.parse(localStorage.getItem("playerName"));
   const playerName2 = JSON.parse(localStorage.getItem("player2Name"));
   const instruction2 = document.querySelector(".instruction2");
+
+  if (stopHere === 1) {
+    instruction2.textContent = "game over.";
+    return;
+  }
   if (Array.from(grid.classList).includes("shots")) return;
   if (grid.classList[0] === "player1-grid" && Arr.length >= 5) {
     if (count >= 1 && time === 0) {
