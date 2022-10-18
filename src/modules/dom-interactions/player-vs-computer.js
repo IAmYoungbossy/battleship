@@ -1,12 +1,8 @@
 import { showShipsOnBoard } from "./place-ship";
 import { showShipsRandomly } from "./place-ship-random";
 
-let hit;
-let index2;
-let time = 0;
-let isSunkShipArray;
-let visitedIndex = null;
-let possibleValidShots = [];
+let hit, index2, time = 0, isSunkShipArray, visitedIndex = null, 
+  possibleValidShots = [];
 
 /** Checks for valid shots on ships */
 function shots(showShips, className) {
@@ -20,14 +16,8 @@ function shots(showShips, className) {
     grid.addEventListener(
       "click",
       alternateShots.bind(
-        null,
-        grid,
-        index,
-        receiveAttack,
-        receiveAttack2,
-        playerBoard,
-        allShipsSunk,
-        allShipsSunk2
+        null, grid, index, receiveAttack, receiveAttack2,
+        playerBoard, allShipsSunk, allShipsSunk2
       )
     );
   playerBoard.forEach(addListenerToGrid);
@@ -35,13 +25,8 @@ function shots(showShips, className) {
 
 /** Alternate shots between computer and player */
 function alternateShots(
-  grid,
-  index,
-  receiveAttack,
-  receiveAttack2,
-  playerBoard,
-  allShipsSunk,
-  allShipsSunk2
+  grid, index, receiveAttack, receiveAttack2, playerBoard,
+  allShipsSunk, allShipsSunk2
 ) {
   if (Array.from(grid.classList).includes("shots")) return;
   if (time === 1) return;
@@ -56,11 +41,7 @@ function alternateShots(
     const playerName = JSON.parse(localStorage.getItem("playerName"));
     instruction.textContent = `Waiting for ${playerName}'s Shot.`;
     const { hitCoord } = validShots(
-      grid2,
-      index2,
-      receiveAttack2,
-      playerBoard2,
-      allShipsSunk2
+      grid2, index2, receiveAttack2, playerBoard2, allShipsSunk2
     );
     hit = hitCoord;
   }, 1500);
@@ -72,17 +53,8 @@ function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk) {
   if (axis.length === 1) axis.unshift("0");
 
   const {
-    hitCoord,
-    ship5Sunk,
-    ship4Sunk,
-    ship3Sunk,
-    ship2Sunk,
-    ship1Sunk,
-    ship5Coord,
-    ship4Coord,
-    ship3Coord,
-    ship2Coord,
-    ship1Coord,
+    hitCoord, ship5Sunk, ship4Sunk, ship3Sunk, ship2Sunk, ship1Sunk,
+    ship5Coord, ship4Coord, ship3Coord, ship2Coord, ship1Coord,
   } = receiveAttack(axis);
 
   if (allShipsSunk()) console.log("Works");
@@ -106,7 +78,6 @@ function isSunkShip(shipSunk, shipCoord, playerBoard) {
     });
   if (shipSunk === true) shipCoord.forEach(addBlueBg);
 }
-
 function computerShots() {
   const arrIndex = [];
   const playerBoard2 = document.querySelectorAll(".player1-grid");
@@ -125,32 +96,11 @@ function computerShots() {
 function findValidShots(arrIndex, ranNum, playerBoard2) {
   if (hit && visitedIndex >= 1) {
     visitedIndex = visitedIndex - 1;
-    if (visitedIndex === 0) {
-      index2 = +possibleValidShots[0] - 1;
-      possibleValidShots.splice(visitedIndex, 1, index2);
-    }
-    if (visitedIndex === 1) {
-      index2 = +possibleValidShots[1] + 1;
-      possibleValidShots.splice(visitedIndex, 1, index2);
-    }
-    if (visitedIndex === 2) {
-      index2 = +possibleValidShots[2] + 10;
-      possibleValidShots.splice(visitedIndex, 1, index2);
-    }
-    if (visitedIndex === 3) {
-      index2 = +possibleValidShots[3] - 10;
-      possibleValidShots.splice(visitedIndex, 1, index2);
-    }
-    if (
-      +index2 < 0 ||
-      +index2 > 99 ||
-      isNaN(+index2) ||
-      index2 === "010" ||
-      Array.from(playerBoard2[+index2].classList).includes("shots")
-    ) {
-      visitedIndex++;
-    }
-    index2 = +possibleValidShots[visitedIndex];
+    removeFromArray(0, +possibleValidShots[0] - 1);
+    removeFromArray(1, +possibleValidShots[1] + 1);
+    removeFromArray(2, +possibleValidShots[2] + 10);
+    removeFromArray(3, +possibleValidShots[3] - 10);
+    increaseVisitedIndex(playerBoard2);
     visitedIndex++;
   }
   if (hit && visitedIndex === null) {
@@ -163,69 +113,37 @@ function findValidShots(arrIndex, ranNum, playerBoard2) {
     ];
     visitedIndex = 0;
     index2 = possibleValidShots[visitedIndex];
-    if (
-      +index2 < 0 ||
-      +index2 > 99 ||
-      isNaN(+index2) ||
-      index2 === "010" ||
-      Array.from(playerBoard2[+index2].classList).includes("shots")
-    ) {
-      visitedIndex++;
-    }
-    index2 = possibleValidShots[visitedIndex];
-    if (
-      +index2 < 0 ||
-      +index2 > 99 ||
-      isNaN(+index2) ||
-      index2 === "010" ||
-      Array.from(playerBoard2[+index2].classList).includes("shots")
-    ) {
-      visitedIndex++;
-    }
-    index2 = possibleValidShots[visitedIndex];
-    if (
-      +index2 < 0 ||
-      +index2 > 99 ||
-      isNaN(+index2) ||
-      index2 === "010" ||
-      Array.from(playerBoard2[+index2].classList).includes("shots")
-    ) {
-      visitedIndex++;
-    }
-    index2 = +possibleValidShots[visitedIndex];
+    increaseVisitedIndex(playerBoard2);
+    increaseVisitedIndex(playerBoard2);
+    increaseVisitedIndex(playerBoard2);
     visitedIndex++;
   }
-
   if (hit === undefined && visitedIndex >= 1 && visitedIndex < 4) {
     index2 = possibleValidShots[visitedIndex];
-    if (
-      +index2 < 0 ||
-      +index2 > 99 ||
-      isNaN(+index2) ||
-      index2 === "010" ||
-      Array.from(playerBoard2[+index2].classList).includes("shots")
-    ) {
-      visitedIndex++;
-    }
-    index2 = possibleValidShots[visitedIndex];
-    if (
-      +index2 < 0 ||
-      +index2 > 99 ||
-      isNaN(+index2) ||
-      index2 === "010" ||
-      Array.from(playerBoard2[+index2].classList).includes("shots")
-    ) {
-      visitedIndex++;
-    }
-    index2 = +possibleValidShots[visitedIndex];
+    increaseVisitedIndex(playerBoard2);
+    increaseVisitedIndex(playerBoard2);
     visitedIndex++;
   }
-
   if (isSunkShipArray && isSunkShipArray.includes(true)) {
     possibleValidShots.splice(0);
     index2 = arrIndex[ranNum];
     visitedIndex = null;
   }
+}
+function removeFromArray(index, expression) {
+  if (visitedIndex === index) {
+    index2 = expression;
+    possibleValidShots.splice(visitedIndex, 1, index2);
+  }
+}
+function increaseVisitedIndex(playerBoard2) {
+  if (
+    +index2 < 0 || +index2 > 99 || isNaN(+index2) || index2 === "010" ||
+    Array.from(playerBoard2[+index2].classList).includes("shots")
+  ) {
+    visitedIndex++;
+  }
+  index2 = +possibleValidShots[visitedIndex];
 }
 
 const playerShots = shots.bind(null, showShipsRandomly, "player2-grid");
