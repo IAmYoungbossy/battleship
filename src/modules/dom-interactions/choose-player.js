@@ -15,7 +15,9 @@ function choosePlayer(playerName) {
   const instruction = createDomElement("p");
   const alignShipDiv = createDomElement("div", { class: "align-ships" });
   const instruction2 = createDomElement("p", { class: "instruction2" });
+  const name = createDomElement("p", { class: "name1" });
   const axisBtn = createDomElement("button", { class: "axis-btn" });
+
   const continueBtn = createDomElement("button", {
     class: "continue-btn hide",
   });
@@ -23,19 +25,20 @@ function choosePlayer(playerName) {
   instruction2.textContent = `${playName}, Place Your Ships.`;
   playAi.textContent = "PLAY AI";
   playHuman.textContent = "PLAY HUMAN";
-  axisBtn.textContent = "X AXIS";
+  axisBtn.textContent = "Horizontal";
   continueBtn.textContent = "Next";
   btnDiv.append(playAi, playHuman);
   alignShipDiv.append(instruction2, axisBtn, continueBtn);
-  instruction.textContent = `${playerName}, Choose Your Enemy.`;
-  chooseDiv.append(instruction, btnDiv);
+  name.textContent = `Hello ${playerName},`;
+  instruction.textContent = "Choose Your Enemy.";
+  chooseDiv.append(name, instruction, btnDiv);
   continueBtn.addEventListener("click", () => {
     lengthOfShip = 5;
     counter = 5;
   });
   const changeAxis = () =>
     (axisBtn.textContent =
-      axisBtn.textContent === "X AXIS" ? "Y AXIS" : "X AXIS");
+      axisBtn.textContent === "Horizontal" ? "Vertical" : "Horizontal");
   axisBtn.addEventListener("click", changeAxis);
   playAi.addEventListener(
     "click",
@@ -87,7 +90,7 @@ function addHover(className) {
     const addToIndexArr = () => {
       const axisBtn = document.querySelector(".axis-btn");
       let index1, index2, index3, index4, index5;
-      if (axisBtn && axisBtn.textContent === "X AXIS") {
+      if (axisBtn && axisBtn.textContent === "Horizontal") {
         index1 = `${axis[0]}${axis[1]}`;
         index2 = `${axis[0]}${+axis[1] + 1}`;
         index3 = `${axis[0]}${+axis[1] + 2}`;
@@ -95,7 +98,7 @@ function addHover(className) {
         index5 = `${axis[0]}${+axis[1] + 4}`;
         playerBoard[+index1].classList.add("red");
       }
-      if (axisBtn && axisBtn.textContent === "Y AXIS") {
+      if (axisBtn && axisBtn.textContent === "Vertical") {
         index1 = `${axis[0]}${axis[1]}`;
         index2 = `${+`${axis[0]}${axis[1]}` + 10}`;
         index3 = `${+`${axis[0]}${axis[1]}` + 20}`;
