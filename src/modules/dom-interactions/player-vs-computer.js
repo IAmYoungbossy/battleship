@@ -51,6 +51,7 @@ function alternateShots(
   if (stopHere === 1) return;
   if (time === 1) return;
   time = 1;
+  const playerName = JSON.parse(localStorage.getItem("playerName"));
   const { grid2, index2, playerBoard2 } = computerShots();
   instruction.textContent = "Waiting for Computer's Shot.";
   validShots(
@@ -59,12 +60,14 @@ function alternateShots(
     receiveAttack,
     playerBoard,
     allShipsSunk,
-    instruction
+    instruction,
+    playerName
   );
 
   setTimeout(() => {
     time = 0;
     const playerName = JSON.parse(localStorage.getItem("playerName"));
+    const AIName = "Computer";
     if (stopHere === 1) return;
     instruction.textContent = `Waiting for ${playerName}'s Shot.`;
     const { hitCoord } = validShots(
@@ -73,7 +76,8 @@ function alternateShots(
       receiveAttack2,
       playerBoard2,
       allShipsSunk2,
-      instruction
+      instruction,
+      AIName
     );
     hit = hitCoord;
   }, 1500);
@@ -86,7 +90,8 @@ function validShots(
   receiveAttack,
   playerBoard,
   allShipsSunk,
-  instruction
+  instruction,
+  playerName
 ) {
   const axis = `${index}`.split("");
   if (axis.length === 1) axis.unshift("0");
@@ -120,7 +125,7 @@ function validShots(
     setTimeout(() => {
       while (document.body.firstChild)
         document.body.removeChild(document.body.firstChild);
-      announceWinner();
+      announceWinner(playerName);
     }, 2000);
   }
 

@@ -1,5 +1,5 @@
 import { showShipsOnBoard } from "./dom-interactions/place-ship";
-import { validShots } from "./dom-interactions/player-vs-computer";
+import { stopHere, validShots } from "./dom-interactions/player-vs-computer";
 
 let count = 0;
 let count2 = 0;
@@ -42,8 +42,9 @@ function shots(Arr, grid, index, receiveAttack, playerBoard, allShipsSunk) {
     if (count >= 1 && time === 0) {
       if (Array.from(player1.classList).includes("hide")) return;
       if (Array.from(player2.classList).includes("hide")) return;
+      if (stopHere === 1) return;
       instruction2.textContent = `${playerName1}, take your shot.`;
-      validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
+      validShots(grid, index, receiveAttack, playerBoard, allShipsSunk, instruction2, playerName2);
     }
     time = 1;
     count += 1;
@@ -53,7 +54,7 @@ function shots(Arr, grid, index, receiveAttack, playerBoard, allShipsSunk) {
       if (Array.from(player1.classList).includes("hide")) return;
       if (Array.from(player2.classList).includes("hide")) return;
       instruction2.textContent = `${playerName2}, take your shot.`;
-      validShots(grid, index, receiveAttack, playerBoard, allShipsSunk);
+      validShots(grid, index, receiveAttack, playerBoard, allShipsSunk, instruction2, playerName1);
     }
     time = 0;
     count2 += 1;

@@ -9,7 +9,7 @@ function renderGetNamePage() {
   createFooter();
 }
 
-function announceWinner() {
+function announceWinner(playerName) {
   const gameOverDiv = createDomElement("div", { class: "game-over-div" });
   const gameOver = createDomElement("p", { class: "game-over" });
   const winner = createDomElement("p", { class: "winner" });
@@ -17,7 +17,7 @@ function announceWinner() {
   const restartBtn = createDomElement("button", { class: "btn-restart" });
   restartBtn.textContent = "RESTART";
   gameOver.textContent = "GAME OVER";
-  name.textContent = "Letam.";
+  name.textContent = playerName;
   winner.textContent = "The Winner Is";
   gameOverDiv.append(gameOver, winner, name, restartBtn);
   renderGetNamePage();
