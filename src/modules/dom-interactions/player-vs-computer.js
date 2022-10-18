@@ -97,7 +97,6 @@ function computerShots() {
 }
 
 function findValidShots(arrIndex, ranNum, playerBoard2) {
-  console.log(hit);
   if (hit && visitedIndex >= 1) {
     visitedIndex = visitedIndex - 1;
     removeFromArray(0, +possibleValidShots[0] - 1);
@@ -151,7 +150,7 @@ function increaseVisitedIndex(playerBoard2) {
   }
   index2 = +possibleValidShots[visitedIndex];
   if (
-    firstHit &&
+    firstHit && playerBoard2[+index2] &&
     Array.from(playerBoard2[+index2].classList).includes("ship") &&
     playerBoard2[+index2].classList[3] !== playerBoard2[firstHit].classList[2]
   ) {

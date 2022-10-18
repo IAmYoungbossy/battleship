@@ -1,5 +1,7 @@
 /* eslint-disable consistent-return */
+let counter = 0;
 function checkValidMove(num, ship, boardArray) {
+  let numCopy = num;
   const domBoardArrray = [];
   if (!ship) return false;
   for (let i = ship.length - 1; i >= 0; i -= 1) {
@@ -11,6 +13,9 @@ function checkValidMove(num, ship, boardArray) {
       return;
     }
   }
+  if (num == 3) counter++;
+  if (counter === 2) numCopy = 6;
+  
   for (let i = 0; i < ship.length; i += 1) {
     if (
       boardArray[+ship[i][0]][+ship[i][1]] === 2 ||
@@ -21,9 +26,11 @@ function checkValidMove(num, ship, boardArray) {
       return;
   }
   for (let i = 0; i < ship.length; i += 1) {
-    boardArray[+ship[i][0]][+ship[i][1]] = num;
+    boardArray[+ship[i][0]][+ship[i][1]] = numCopy;
     domBoardArrray.push(`${ship[i][0]}${ship[i][1]}`);
   }
+
+  if (counter === 2) counter = 0;
 
   return domBoardArrray;
 }
