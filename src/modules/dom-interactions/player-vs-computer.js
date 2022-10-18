@@ -2,7 +2,7 @@ import { showShipsOnBoard } from "./place-ship";
 import { showShipsRandomly } from "./place-ship-random";
 
 let hit, index2, time = 0, isSunkShipArray, visitedIndex = null, 
-  possibleValidShots = [];
+  possibleValidShots = [], stopHere = 0;
 
 /** Checks for valid shots on ships */
 function shots(showShips, className) {
@@ -56,8 +56,7 @@ function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk) {
     hitCoord, ship5Sunk, ship4Sunk, ship3Sunk, ship2Sunk, ship1Sunk,
     ship5Coord, ship4Coord, ship3Coord, ship2Coord, ship1Coord,
   } = receiveAttack(axis);
-
-  if (allShipsSunk()) console.log("Works");
+  if (stopHere === 1) return;
   if (grid) grid.classList.add("shots");
   if (hitCoord) grid.classList.add("valid-shot");
 
@@ -66,7 +65,11 @@ function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk) {
   isSunkShip(ship3Sunk, ship3Coord, playerBoard);
   isSunkShip(ship2Sunk, ship2Coord, playerBoard);
   isSunkShip(ship1Sunk, ship1Coord, playerBoard);
+
+  if (allShipsSunk()) stopHere = 1;
+
   isSunkShipArray = [ship5Sunk, ship4Sunk, ship3Sunk, ship2Sunk, ship1Sunk];
+  
   return { hitCoord };
 }
 
