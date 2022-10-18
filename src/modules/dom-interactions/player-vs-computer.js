@@ -182,6 +182,16 @@ function findValidShots(arrIndex, ranNum, playerBoard2) {
     ) {
       visitedIndex++;
     }
+    index2 = possibleValidShots[visitedIndex];
+    if (
+      +index2 < 0 ||
+      +index2 > 99 ||
+      isNaN(+index2) ||
+      index2 === "010" ||
+      Array.from(playerBoard2[+index2].classList).includes("shots")
+    ) {
+      visitedIndex++;
+    }
     index2 = +possibleValidShots[visitedIndex];
     visitedIndex++;
   }
