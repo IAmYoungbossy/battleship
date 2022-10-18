@@ -2,9 +2,9 @@
 import {Ship} from "./ship";
 import {checkValidMove} from "./valid-move";
 
-function shipAxis(x, y, length, align, board, receiveAttack) {
+function shipAxis(num, x, y, length, align, board, receiveAttack) {
   const ship = Ship([x, y], length, align, receiveAttack).shipCoord;
-  const shipCoords = checkValidMove(ship, board);
+  const shipCoords = checkValidMove(num, ship, board);
   const arrayCoord = [];
 
   arrayCoord.push(shipCoords);

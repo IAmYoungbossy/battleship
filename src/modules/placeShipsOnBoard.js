@@ -33,7 +33,7 @@ function assignLengthToShips(Arr, assignValue) {
 function placeShips(index, shipLenght, align, board, Arr, shipArr) {
   const axis = `${index}`.split("");
   if (axis.length === 1) axis.unshift("0");
-  const shipCoord = shipAxis(+axis[0], +axis[1], shipLenght, align, board);
+  const shipCoord = shipAxis(shipLenght, +axis[0], +axis[1], shipLenght, align, board);
   if (shipCoord.length !== 0) {
     Arr.push(shipCoord);
     shipArr.push({ XY: [+axis[0], +axis[1]], align, shipLenght });

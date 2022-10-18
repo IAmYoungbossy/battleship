@@ -40,9 +40,14 @@ function addBgColor(index, positionShip, board, squares, Arr, instruction2) {
   const player1 = document.querySelector(".player1-board");
   const player2 = document.querySelector(".player2-board");
   positionShip(index);
-
   board.flat().forEach((item, index2) => {
-    if (item === 1) squares[index2].classList.add("ship");
+    if (item === 2 || item === 3 || item === 4 || item === 5)
+      squares[index2].classList.add("ship");
+    if (item === 2) squares[index2].classList.add("ship2");
+    if (item === 3) squares[index2].classList.add("ship3");
+    if (item === 3) squares[index2].classList.add("ship3");
+    if (item === 4) squares[index2].classList.add("ship4");
+    if (item === 5) squares[index2].classList.add("ship5");
   });
 
   if (player1.classList[1] === "hide" || player2.classList[1] === "hide") {
@@ -60,7 +65,8 @@ function addBgColor(index, positionShip, board, squares, Arr, instruction2) {
   if (Array.from(player2.classList).includes("hide")) return;
   if (Arr.length === 5 && this !== document) {
     board.flat().forEach((item, index2) => {
-      if (item === 1) squares[index2].classList.remove("ship");
+      if (item === 2 || item === 3 || item === 4 || item === 5)
+        squares[index2].classList.remove("ship");
     });
   }
 }
