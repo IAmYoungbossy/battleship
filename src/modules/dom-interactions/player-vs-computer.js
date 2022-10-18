@@ -1,3 +1,4 @@
+import { announceWinner } from "./page-get-name";
 import { showShipsOnBoard } from "./place-ship";
 import { showShipsRandomly } from "./place-ship-random";
 
@@ -47,17 +48,24 @@ function alternateShots(
 ) {
   const instruction = document.querySelector(".align-ships").children[0];
   if (Array.from(grid.classList).includes("shots")) return;
-  if (stopHere === 1)  return;
+  if (stopHere === 1) return;
   if (time === 1) return;
   time = 1;
   const { grid2, index2, playerBoard2 } = computerShots();
   instruction.textContent = "Waiting for Computer's Shot.";
-  validShots(grid, index, receiveAttack, playerBoard, allShipsSunk, instruction);
+  validShots(
+    grid,
+    index,
+    receiveAttack,
+    playerBoard,
+    allShipsSunk,
+    instruction
+  );
 
   setTimeout(() => {
     time = 0;
     const playerName = JSON.parse(localStorage.getItem("playerName"));
-    if (stopHere === 1)  return;
+    if (stopHere === 1) return;
     instruction.textContent = `Waiting for ${playerName}'s Shot.`;
     const { hitCoord } = validShots(
       grid2,
@@ -72,7 +80,14 @@ function alternateShots(
 }
 
 /** Colours valid shots red */
-function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk, instruction) {
+function validShots(
+  grid,
+  index,
+  receiveAttack,
+  playerBoard,
+  allShipsSunk,
+  instruction
+) {
   const axis = `${index}`.split("");
   if (axis.length === 1) axis.unshift("0");
 
@@ -102,6 +117,11 @@ function validShots(grid, index, receiveAttack, playerBoard, allShipsSunk, instr
   if (allShipsSunk()) {
     instruction.textContent = "game over.";
     stopHere = 1;
+    setTimeout(() => {
+      while (document.body.firstChild)
+        document.body.removeChild(document.body.firstChild);
+      announceWinner();
+    }, 2000);
   }
 
   isSunkShipArray = [ship5Sunk, ship4Sunk, ship3Sunk, ship2Sunk, ship1Sunk];

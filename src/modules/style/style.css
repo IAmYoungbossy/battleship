@@ -42,7 +42,8 @@ h1 {
   text-transform: uppercase;
 }
 
-.input-div {
+.input-div,
+.game-over-div {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -94,9 +95,31 @@ input {
 }
 
 .play-ai,
-.play-human {
+.play-human,
+.btn-restart {
   width: 100px;
   padding: 20px 0;
+}
+
+.btn-restart {
+  margin: auto;
+}
+
+.game-over {
+  font-size: xxx-large;
+  color: #c3cbeb;
+}
+
+.winner,
+.name {
+  font-size: xx-large;
+  color: cadetblue;
+  margin-top: -15px;
+  text-shadow: 0px -5px 5px;
+}
+
+.game-over-div {
+  text-align: center;
 }
 
 .board-container {
