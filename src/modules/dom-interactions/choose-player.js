@@ -61,7 +61,18 @@ function insertBoard(alignShipDiv, chooseDiv, playerShot) {
   addHover(".player1-grid");
   addHover(".player2-grid");
   playerShot();
+  setPlayersName();
 }
+
+function setPlayersName() {
+  const player1 = document.querySelector(".player");
+  const player2 = document.querySelector(".player2");
+  const playerName = JSON.parse(localStorage.getItem("playerName"));
+  const playerName2 = JSON.parse(localStorage.getItem("player2Name"));
+  player1.textContent = `Player 1: ${playerName}`;
+  player2.textContent = `Player 2: ${playerName2}`;
+}
+
 function addHover(className) {
   const playerBoard = document.querySelectorAll(className);
   playerBoard.forEach(placeShipHover);

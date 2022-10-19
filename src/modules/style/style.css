@@ -163,7 +163,8 @@ input {
   height: 430px;
 }
 
-.player {
+.player,
+.player2 {
   text-align: center;
   color: #dedaff;
   font-weight: bolder;
