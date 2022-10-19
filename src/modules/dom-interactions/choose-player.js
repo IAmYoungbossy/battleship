@@ -3,6 +3,7 @@ import { createGameboard } from "./dom-gameboard";
 import { createDomElement } from "./helper-function";
 import { createInputElem } from "./name-input";
 import { playerShots } from "./player-vs-computer";
+import { preventEmptyInput } from "./get-player-name";
 
 let lengthOfShip = 5;
 let counter = 5;
@@ -176,6 +177,10 @@ function player2Name(chooseDiv, playerShot, alignShipDiv) {
   );
 }
 function player1Board(nameInput, inputDiv, playerShot, alignShipDiv) {
+  if (nameInput.value.trim() === "") {
+    preventEmptyInput(nameInput);
+    return;
+  }
   const input = document.querySelector("input");
   input.classList.add("second-input");
   localStorage.setItem("player2Name", JSON.stringify(`${nameInput.value}`));

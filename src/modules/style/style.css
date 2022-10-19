@@ -10,11 +10,13 @@ body {
   flex-direction: column;
   height: 100vh;
   align-items: center;
-  background: radial-gradient(circle at 100%,
-      #341406e8,
-      #333 50%,
-      #0f1017 75%,
-      #123 75%);
+  background: radial-gradient(
+    circle at 100%,
+    #341406e8,
+    #333 50%,
+    #0f1017 75%,
+    #123 75%
+  );
   background-attachment: fixed;
 }
 
@@ -84,7 +86,7 @@ input {
   text-align: center;
 }
 
-.choose-div>p {
+.choose-div > p {
   font-size: 2rem;
   text-transform: capitalize;
   color: aquamarine;
@@ -115,7 +117,7 @@ input {
   width: 90px;
 }
 
-.align-ships>button {
+.align-ships > button {
   margin-top: 10px;
   padding: 8px;
   font-weight: bolder;
@@ -161,6 +163,11 @@ input {
   margin: auto;
   width: 430px;
   height: 430px;
+}
+
+.error-msg {
+  text-align: center;
+  color: greenyellow;
 }
 
 .player,
