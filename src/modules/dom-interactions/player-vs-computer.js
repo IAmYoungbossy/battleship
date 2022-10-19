@@ -224,5 +224,10 @@ function increaseVisitedIndex(playerBoard2) {
   index2 = +possibleValidShots[visitedIndex];
 }
 
+function resetPlayerVsComputer() {
+  time = 0;
+  stopHere = 0;
+}
+
 const playerShots = shots.bind(null, showShipsRandomly, "player2-grid");
-export { playerShots, validShots, stopHere };
+export { playerShots, validShots, stopHere, resetPlayerVsComputer };

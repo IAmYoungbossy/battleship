@@ -2,6 +2,9 @@ import { createFooter } from "./page-footer";
 import { getName } from "./get-player-name";
 import { createHeader } from "./page-header";
 import { createDomElement } from "./helper-function";
+import { resetLengthAndCounter } from "./choose-player";
+import { resetPlayerVsComputer } from "./player-vs-computer";
+import { resetHumanPlayer } from "./player";
 
 function renderGetNamePage() {
   createHeader("page-one-header");
@@ -23,6 +26,7 @@ function announceWinner(playerName) {
   renderGetNamePage();
   const getNameDiv = document.querySelector(".input-div");
   document.body.replaceChild(gameOverDiv, getNameDiv);
+  restartBtn.addEventListener("click", () => rerenderGetNamePage());
 }
 
 function restart() {
@@ -40,6 +44,9 @@ function rerenderGetNamePage() {
   while (document.body.firstChild)
     document.body.removeChild(document.body.firstChild);
   renderGetNamePage();
+  resetLengthAndCounter();
+  resetPlayerVsComputer();
+  resetHumanPlayer();
 }
 
 export { renderGetNamePage, restart, announceWinner };

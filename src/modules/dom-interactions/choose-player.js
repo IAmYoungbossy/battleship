@@ -171,4 +171,9 @@ function player1Board(nameInput, inputDiv, playerShot, alignShipDiv) {
   insertBoard(alignShipDiv, inputDiv, playerShot);
 }
 
-export { choosePlayer };
+function resetLengthAndCounter() {
+  lengthOfShip = 5;
+  counter = 5;
+}
+
+export { choosePlayer, resetLengthAndCounter };
