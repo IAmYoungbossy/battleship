@@ -1,4 +1,4 @@
-import { humanPlayers } from "../player";
+import { humanPlayers } from "./player";
 import { createGameboard } from "./dom-gameboard";
 import { createDomElement } from "./helper-function";
 import { createInputElem } from "./name-input";

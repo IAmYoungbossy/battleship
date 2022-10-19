@@ -1,5 +1,5 @@
-import { showShipsOnBoard } from "./dom-interactions/place-ship";
-import { stopHere, validShots } from "./dom-interactions/player-vs-computer";
+import { showShipsOnBoard } from "./place-ship";
+import { stopHere, validShots } from "./player-vs-computer";
 
 let count = 0;
 let count2 = 0;
