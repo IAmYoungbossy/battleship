@@ -15,6 +15,7 @@ body {
       #333 50%,
       #0f1017 75%,
       #123 75%);
+  background-attachment: fixed;
 }
 
 header {
@@ -150,6 +151,27 @@ input {
   width: 100%;
   justify-content: space-between;
   gap: 20px;
+  row-gap: 60px;
+  margin-top: 5px;
+  margin-bottom: 50px;
+}
+
+.container-div1,
+.container-div2 {
+  margin: auto;
+  width: 430px;
+  height: 430px;
+}
+
+.player {
+  text-align: center;
+  color: #dedaff;
+  font-weight: bolder;
+  margin-bottom: 10px;
+  font-family: monospace;
+  text-decoration: underline;
+  text-transform: uppercase;
+  text-decoration-line: underline;
 }
 
 .player1-board,
@@ -159,8 +181,7 @@ input {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   gap: 1px;
-  width: 450px;
-  height: 450px;
+  height: 100%;
   margin: auto;
   border: 1px solid #f2f2f2;
   box-shadow: 7px 5px 9px 2px;

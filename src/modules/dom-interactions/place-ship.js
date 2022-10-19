@@ -75,7 +75,9 @@ function showEnemy() {
   const playerName = JSON.parse(localStorage.getItem("player2Name"));
   const instruction2 = document.querySelector(".instruction2");
   const player2 = document.querySelector(".player2-board");
+  const containerDiv2 = document.querySelector(".container-div2");
   const player1 = document.querySelector(".player1-board");
+  const containerDiv1 = document.querySelector(".container-div1");
   const grid = document.querySelectorAll(".player1-grid");
   const { startBtn, continueBtn } = createPlayBtn();
   continueBtn.classList.remove("hide");
@@ -84,7 +86,9 @@ function showEnemy() {
   const showShips = () => {
     instruction2.textContent = `${playerName}, Place Your Ships.`;
     player2.classList.remove("hide");
+    containerDiv2.classList.remove("hide");
     player1.classList.add("hide");
+    containerDiv1.classList.add("hide");
     continueBtn.classList.add("hide");
     startBtn.classList.remove("hide");
 
@@ -102,6 +106,8 @@ function showEnemy() {
     });
     instruction2.textContent = `${playerName}, take a shot.`;
     player1.classList.remove("hide");
+    containerDiv1.classList.remove("hide");
+    containerDiv2.classList.remove("hide");
     restart();
   };
 
@@ -113,12 +119,14 @@ function showEnemy() {
 
 function showEnemyWater() {
   const player = document.querySelector(".player2-board");
+  const containerDiv2 = document.querySelector(".container-div2");
   const { startBtn, instruction } = createPlayBtn();
   instruction.textContent = "CLICK PLAY TO START PLAYING";
   startBtn.textContent = "Play";
   const showShips = () => {
     const playerName = JSON.parse(localStorage.getItem("playerName"));
     player.classList.remove("hide");
+    containerDiv2.classList.remove("hide");
     instruction.textContent = `Waiting for ${playerName}'s shot`;
     restart();
   };
