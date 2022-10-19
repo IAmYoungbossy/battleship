@@ -180,7 +180,6 @@ input {
   padding: 1px;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  gap: 1px;
   height: 100%;
   margin: auto;
   border: 1px solid #f2f2f2;

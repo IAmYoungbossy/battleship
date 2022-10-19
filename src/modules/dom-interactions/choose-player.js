@@ -70,12 +70,11 @@ function addHover(className) {
     if (axis.length === 1) axis.unshift("0");
     const indexArr = [];
     const removeHoverEffect = (index) => {
-      if (playerBoard) playerBoard[+index].classList.remove("grey");
+      if (playerBoard[+index]) playerBoard[+index].classList.remove("grey");
     };
     const emptyIndexArr = () => {
       indexArr.forEach(removeHoverEffect);
       indexArr.splice(0);
-      grid.classList.remove("red");
     };
     const setShipLength = () => {
       if (Array.from(grid.classList).includes("grey")) {
@@ -136,6 +135,8 @@ function addHover(className) {
       if (indexArr.length === counter2) {
         indexArr.forEach(addHoverEffect);
       }
+      if (counter < 1)
+        playerBoard.forEach((sqr) => sqr.classList.remove("red"));
     };
     grid.addEventListener("click", setShipLength);
     grid.addEventListener("mouseenter", addToIndexArr);

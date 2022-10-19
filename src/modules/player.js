@@ -6,12 +6,11 @@ let count2 = 0;
 let time = 1;
 
 /** Checks for valid shots on ships */
-function player(className, className2) {
+function player(className) {
   const playerBoard = document.querySelectorAll(`.${className}`);
-  const pla = document.querySelectorAll(`.${className2}`);
   const [receiveAttack, Arr, allShipsSunk] = showShipsOnBoard.call(
-    pla[0],
-    className2
+    playerBoard[0],
+    className
   );
   const addListenerToGrid = (grid, index) =>
     grid.addEventListener(
@@ -62,8 +61,8 @@ function shots(Arr, grid, index, receiveAttack, playerBoard, allShipsSunk) {
 }
 
 function humanPlayers() {
-  player("player1-grid", "player1-grid");
-  player("player2-grid", "player2-grid");
+  player("player1-grid");
+  player("player2-grid");
 }
 
 export { humanPlayers };

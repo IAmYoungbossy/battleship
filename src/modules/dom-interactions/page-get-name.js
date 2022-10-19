@@ -30,7 +30,7 @@ function restart() {
   const alignDiv = document.querySelector(".align-ships");
   const alignBtn = document.querySelector(".continue-btn");
   const axisBtn = document.querySelector(".axis-btn");
-  alignDiv.replaceChild(restart, alignBtn);
+  if (alignBtn) alignDiv.replaceChild(restart, alignBtn);
   restart.textContent = "Restart";
   if (axisBtn) axisBtn.remove();
   restart.addEventListener("click", rerenderGetNamePage);
