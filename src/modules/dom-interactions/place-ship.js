@@ -72,6 +72,7 @@ function addBgColor(index, positionShip, board, squares, Arr, instruction2) {
 }
 
 function showEnemy() {
+  console.log("cj");
   const playerName = JSON.parse(localStorage.getItem("player2Name"));
   const instruction2 = document.querySelector(".instruction2");
   const player2 = document.querySelector(".player2-board");
@@ -91,7 +92,7 @@ function showEnemy() {
     containerDiv1.classList.add("hide");
     continueBtn.classList.add("hide");
     startBtn.classList.remove("hide");
-
+    console.log("cj");
     grid.forEach((sqr) => {
       if (Array.from(sqr.classList).includes("ship"))
         sqr.classList.remove("ship");
@@ -104,6 +105,7 @@ function showEnemy() {
       if (Array.from(sqr.classList).includes("ship"))
         sqr.classList.remove("ship");
     });
+    console.log("cv");
     instruction2.textContent = `${playerName}, take a shot.`;
     player1.classList.remove("hide");
     containerDiv1.classList.remove("hide");
@@ -124,11 +126,16 @@ function showEnemyWater() {
   instruction.textContent = "CLICK PLAY TO START PLAYING";
   startBtn.textContent = "Play";
   const showShips = () => {
-    const playerName = JSON.parse(localStorage.getItem("playerName"));
-    player.classList.remove("hide");
-    containerDiv2.classList.remove("hide");
-    instruction.textContent = `Waiting for ${playerName}'s shot`;
-    restart();
+    startBtn.textContent = "Play";
+    document.body.classList.add("fade");
+    setTimeout(() => {
+      document.body.classList.remove("fade");
+      const playerName = JSON.parse(localStorage.getItem("playerName"));
+      player.classList.remove("hide");
+      containerDiv2.classList.remove("hide");
+      instruction.textContent = `Waiting for ${playerName}'s shot`;
+      restart();
+    }, 500);
   };
   startBtn.addEventListener("click", showShips);
 }

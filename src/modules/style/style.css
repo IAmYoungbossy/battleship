@@ -18,6 +18,13 @@ body {
     #123 75%
   );
   background-attachment: fixed;
+  opacity: 1;
+  transition-duration: 0.7s;
+  transition-property: opacity;
+}
+
+body.fade {
+  opacity: 0;
 }
 
 header {
@@ -52,6 +59,16 @@ h1 {
   margin-top: 100px;
 }
 
+.input-div {
+  opacity: 1;
+  transition-duration: 0.7s;
+  transition-property: opacity;
+}
+
+.input-div.fade {
+  opacity: 0;
+}
+
 .game-over-div {
   margin-top: 65px;
 }
@@ -84,6 +101,13 @@ input {
 .choose-div {
   margin-top: 100px;
   text-align: center;
+  opacity: 1;
+  transition-duration: 0.7s;
+  transition-property: opacity;
+}
+
+.choose-div.fade {
+  opacity: 0;
 }
 
 .choose-div > p {

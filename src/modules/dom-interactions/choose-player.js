@@ -55,14 +55,18 @@ function insertBoard(alignShipDiv, chooseDiv, playerShot) {
   const header = document.querySelector("h1");
   const head = document.querySelector("header");
   const { boardContainer } = createGameboard();
-  header.classList.add("h1");
-  head.classList.add("header");
-  document.body.insertBefore(alignShipDiv, chooseDiv);
-  document.body.replaceChild(boardContainer, chooseDiv);
-  addHover(".player1-grid");
-  addHover(".player2-grid");
-  playerShot();
-  setPlayersName();
+  document.body.classList.add("fade");
+  setTimeout(() => {
+    header.classList.add("h1");
+    head.classList.add("header");
+    document.body.classList.remove("fade");
+    document.body.insertBefore(alignShipDiv, chooseDiv);
+    document.body.replaceChild(boardContainer, chooseDiv);
+    addHover(".player1-grid");
+    addHover(".player2-grid");
+    playerShot();
+    setPlayersName();
+  }, 500);
 }
 
 function setPlayersName() {

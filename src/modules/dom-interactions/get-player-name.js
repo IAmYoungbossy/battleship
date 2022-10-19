@@ -17,20 +17,24 @@ function getInputValue(startBtn, nameInput) {
       preventEmptyInput(nameInput);
       return;
     }
-    const chooseDiv = choosePlayer(nameInput.value);
-    document.body.replaceChild(chooseDiv, getNameDiv);
-    localStorage.setItem("playerName", JSON.stringify(`${nameInput.value}`));
+    document.body.classList.add("fade");
+    setTimeout(() => {
+      document.body.classList.remove("fade");
+      const chooseDiv = choosePlayer(nameInput.value);
+      document.body.replaceChild(chooseDiv, getNameDiv);
+      localStorage.setItem("playerName", JSON.stringify(`${nameInput.value}`));
+    }, 500);
   };
   startBtn.addEventListener("click", replaceNameDiv);
 }
 
 function preventEmptyInput(nameInput) {
   const errorMsg = document.querySelector(".error-msg");
-    errorMsg.classList.remove("hide");
-    setTimeout(() => {
-      errorMsg.classList.add("hide");
-      nameInput.value = "";
-    }, 2000);
+  errorMsg.classList.remove("hide");
+  setTimeout(() => {
+    errorMsg.classList.add("hide");
+    nameInput.value = "";
+  }, 2000);
 }
 
 export { getName, preventEmptyInput };

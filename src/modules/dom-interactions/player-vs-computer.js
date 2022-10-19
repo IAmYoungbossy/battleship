@@ -14,7 +14,7 @@ let hit,
 /** Checks for valid shots on ships */
 function shots(showShips, className) {
   const playerBoard = document.querySelectorAll(`.${className}`);
-  console.log("One");
+
   localStorage.setItem("player2Name", JSON.stringify("Computer"));
   const { receiveAttack, allShipsSunk } = showShips();
   const [receiveAttack2, , allShipsSunk2] = showShipsOnBoard.call(
