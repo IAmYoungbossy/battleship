@@ -2,9 +2,9 @@ import { createFooter } from "./page-footer";
 import { getName } from "./get-player-name";
 import { createHeader } from "./page-header";
 import { createDomElement } from "./helper-function";
-import { resetLengthAndCounter } from "./choose-player";
 import { resetPlayerVsComputer } from "./player-vs-computer";
 import { resetHumanPlayer } from "./player";
+import { resetShipHover } from "./ship-hover";
 
 function renderGetNamePage() {
   document.body.classList.add("hidden");
@@ -52,7 +52,7 @@ function rerenderGetNamePage() {
     while (document.body.firstChild)
     document.body.removeChild(document.body.firstChild);
   renderGetNamePage();
-  resetLengthAndCounter();
+  resetShipHover();
   resetPlayerVsComputer();
   resetHumanPlayer();
   }, 400);
