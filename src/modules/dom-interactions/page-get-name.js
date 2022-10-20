@@ -5,6 +5,7 @@ import { createDomElement } from "./helper-function";
 import { resetPlayerVsComputer } from "./player-vs-computer";
 import { resetHumanPlayer } from "./player";
 import { resetShipHover } from "./ship-hover";
+import { addRippleEffect } from "./ripple-button";
 
 function renderGetNamePage() {
   document.body.classList.add("hidden");
@@ -31,6 +32,7 @@ function announceWinner(playerName) {
     const getNameDiv = document.querySelector(".input-div");
     document.body.replaceChild(gameOverDiv, getNameDiv);
     restartBtn.addEventListener("click", () => rerenderGetNamePage());
+    addRippleEffect();
   }, 400);
 }
 
@@ -55,6 +57,7 @@ function rerenderGetNamePage() {
   resetShipHover();
   resetPlayerVsComputer();
   resetHumanPlayer();
+  addRippleEffect();
   }, 400);
 }
 

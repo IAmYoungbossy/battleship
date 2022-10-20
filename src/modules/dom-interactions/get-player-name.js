@@ -1,5 +1,6 @@
 import { choosePlayer } from "./choose-player";
 import { createInputElem } from "./name-input";
+import { addRippleEffect } from "./ripple-button";
 
 function getName(nameDetails) {
   const { inputDiv, startBtn, nameInput } = createInputElem(
@@ -23,6 +24,7 @@ function getInputValue(startBtn, nameInput) {
       const chooseDiv = choosePlayer(nameInput.value);
       document.body.replaceChild(chooseDiv, getNameDiv);
       localStorage.setItem("playerName", JSON.stringify(`${nameInput.value}`));
+      addRippleEffect();
     }, 500);
   };
   startBtn.addEventListener("click", replaceNameDiv);

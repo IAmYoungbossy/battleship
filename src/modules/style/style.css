@@ -139,7 +139,7 @@ input {
 .play-human,
 .btn-restart,
 .start-btn {
-  width: 100px;
+  width: 110px;
   padding: 15px 0;
   font-weight: bolder;
 }
@@ -276,6 +276,43 @@ input {
 
 .blinking {
   animation: blinkingBackground 2s infinite;
+}
+
+button {
+  position: relative;
+  overflow: hidden;
+  transition: background 400ms;
+  color: #fff;
+  background-color: #6200ee;
+  outline: 0;
+  border: 0;
+  box-shadow: 1px 2px 1rem 0px rgb(0 0 0 / 95%);
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 100px;
+  height: 100px;
+  margin-top: -50px;
+  margin-left: -50px;
+  opacity: 0;
+}
+
+@keyframes ripple {
+  from {
+    opacity: 1;
+    transform: scale(0);
+  }
+  to{
+    transform: scale(4);
+    opacity: 0;
+  }
 }
 
 @keyframes blinkingBackground {

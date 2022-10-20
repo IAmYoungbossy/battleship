@@ -5,6 +5,7 @@ import { createInputElem } from "./name-input";
 import { playerShots } from "./player-vs-computer";
 import { preventEmptyInput } from "./get-player-name";
 import { addHover, resetShipHover } from "./ship-hover";
+import { addRippleEffect } from "./ripple-button";
 
 /** Creates Div container for choosing your opponent. */
 function choosePlayer(playerName) {
@@ -81,6 +82,7 @@ function insertBoard(alignShipDiv, chooseDiv, playerShot) {
     addHover(".player2-grid");
     playerShot();
     setPlayersName();
+    addRippleEffect();
   }, 400);
 }
 
@@ -106,6 +108,7 @@ function player2Name(chooseDiv, playerShot, alignShipDiv) {
       "click",
       player1Board.bind(null, nameInput, inputDiv, playerShot, alignShipDiv)
     );
+    addRippleEffect();
   }, 400);
 }
 

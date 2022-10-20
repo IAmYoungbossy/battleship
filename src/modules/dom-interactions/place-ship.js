@@ -2,6 +2,7 @@
 import { Gameboard } from "../gameboard";
 import { placePlayerShips } from "../placeShipsOnBoard";
 import { restart } from "./page-get-name";
+import { addRippleEffect } from "./ripple-button";
 
 /** Gets ships coordinates from Gameboard and display in DOM */
 function showShipsOnBoard(className) {
@@ -91,6 +92,7 @@ function showEnemy() {
         if (Array.from(sqr.classList).includes("ship"))
           sqr.classList.remove("ship");
       });
+      addRippleEffect();
     }, 400);
   };
 
@@ -108,6 +110,7 @@ function showEnemy() {
       containerDiv1.classList.remove("hide");
       containerDiv2.classList.remove("hide");
       restart();
+      addRippleEffect();
     }, 400);
   };
 
@@ -122,6 +125,7 @@ function showEnemyWater() {
   const player = document.querySelector(".player2-board");
   const containerDiv2 = document.querySelector(".container-div2");
   const { startBtn, instruction } = createPlayBtn();
+  addRippleEffect();
   instruction.textContent = "CLICK PLAY TO START PLAYING";
   startBtn.textContent = "Play";
   const showShips = () => {
@@ -134,6 +138,7 @@ function showEnemyWater() {
       containerDiv2.classList.remove("hide");
       instruction.textContent = `Waiting for ${playerName}'s shot`;
       restart();
+      addRippleEffect();
     }, 400);
   };
   startBtn.addEventListener("click", showShips);
@@ -144,6 +149,7 @@ function createPlayBtn() {
   const continueBtn = document.querySelector(".continue-btn");
   const instruction = shipAxis.children[0];
   const startBtn = shipAxis.children[1];
+  addRippleEffect();
   return { startBtn, instruction, continueBtn };
 }
 
