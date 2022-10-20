@@ -72,7 +72,6 @@ function addBgColor(index, positionShip, board, squares, Arr, instruction2) {
 }
 
 function showEnemy() {
-  console.log("cj");
   const playerName = JSON.parse(localStorage.getItem("player2Name"));
   const instruction2 = document.querySelector(".instruction2");
   const player2 = document.querySelector(".player2-board");
@@ -85,18 +84,21 @@ function showEnemy() {
   startBtn.classList.add("hide");
 
   const showShips = () => {
-    instruction2.textContent = `${playerName}, Place Your Ships.`;
-    player2.classList.remove("hide");
-    containerDiv2.classList.remove("hide");
-    player1.classList.add("hide");
-    containerDiv1.classList.add("hide");
-    continueBtn.classList.add("hide");
-    startBtn.classList.remove("hide");
-    console.log("cj");
-    grid.forEach((sqr) => {
-      if (Array.from(sqr.classList).includes("ship"))
-        sqr.classList.remove("ship");
-    });
+    document.body.classList.add("fade");
+    setTimeout(() => {
+      document.body.classList.remove("fade");
+      instruction2.textContent = `${playerName}, Place Your Ships.`;
+      player2.classList.remove("hide");
+      containerDiv2.classList.remove("hide");
+      player1.classList.add("hide");
+      containerDiv1.classList.add("hide");
+      continueBtn.classList.add("hide");
+      startBtn.classList.remove("hide");
+      grid.forEach((sqr) => {
+        if (Array.from(sqr.classList).includes("ship"))
+          sqr.classList.remove("ship");
+      });
+    }, 400);
   };
 
   const showShips2 = () => {
@@ -105,12 +107,15 @@ function showEnemy() {
       if (Array.from(sqr.classList).includes("ship"))
         sqr.classList.remove("ship");
     });
-    console.log("cv");
-    instruction2.textContent = `${playerName}, take a shot.`;
-    player1.classList.remove("hide");
-    containerDiv1.classList.remove("hide");
-    containerDiv2.classList.remove("hide");
-    restart();
+    document.body.classList.add("fade");
+    setTimeout(() => {
+      document.body.classList.remove("fade");
+      instruction2.textContent = `${playerName}, take a shot.`;
+      player1.classList.remove("hide");
+      containerDiv1.classList.remove("hide");
+      containerDiv2.classList.remove("hide");
+      restart();
+    }, 400);
   };
 
   if (this.classList[0] === "player1-grid")
@@ -135,7 +140,7 @@ function showEnemyWater() {
       containerDiv2.classList.remove("hide");
       instruction.textContent = `Waiting for ${playerName}'s shot`;
       restart();
-    }, 500);
+    }, 400);
   };
   startBtn.addEventListener("click", showShips);
 }

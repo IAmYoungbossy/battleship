@@ -66,7 +66,7 @@ function insertBoard(alignShipDiv, chooseDiv, playerShot) {
     addHover(".player2-grid");
     playerShot();
     setPlayersName();
-  }, 500);
+  }, 400);
 }
 
 function setPlayersName() {
@@ -93,7 +93,10 @@ function addHover(className) {
       indexArr.splice(0);
     };
     const setShipLength = () => {
-      if (Array.from(grid.classList).includes("grey")) {
+      if (
+        Array.from(grid.classList).includes("grey") &&
+        !Array.from(grid.classList).includes("ship")
+      ) {
         counter--;
         if (counter === 4) lengthOfShip = 4;
         if (counter === 3) lengthOfShip = 3;
@@ -174,11 +177,15 @@ function player2Name(chooseDiv, playerShot, alignShipDiv) {
     "Enter Human Name",
     "Continue"
   );
-  document.body.replaceChild(inputDiv, chooseDiv);
-  startBtn.addEventListener(
-    "click",
-    player1Board.bind(null, nameInput, inputDiv, playerShot, alignShipDiv)
-  );
+  document.body.classList.add("fade");
+  setTimeout(() => {
+    document.body.classList.remove("fade");
+    document.body.replaceChild(inputDiv, chooseDiv);
+    startBtn.addEventListener(
+      "click",
+      player1Board.bind(null, nameInput, inputDiv, playerShot, alignShipDiv)
+    );
+  }, 400);
 }
 function player1Board(nameInput, inputDiv, playerShot, alignShipDiv) {
   if (nameInput.value.trim() === "") {

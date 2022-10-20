@@ -23,6 +23,16 @@ body {
   transition-property: opacity;
 }
 
+.hidden {
+  opacity: 0;
+  transition-duration: unset;
+}
+
+body.opacity {
+  transition-duration: 0.7s;
+  opacity: 1;
+}
+
 body.fade {
   opacity: 0;
 }

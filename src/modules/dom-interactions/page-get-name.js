@@ -7,6 +7,7 @@ import { resetPlayerVsComputer } from "./player-vs-computer";
 import { resetHumanPlayer } from "./player";
 
 function renderGetNamePage() {
+  document.body.classList.add("hidden");
   createHeader("page-one-header");
   getName("Enter Player's Name:");
   createFooter();
@@ -23,10 +24,14 @@ function announceWinner(playerName) {
   name.textContent = playerName;
   winner.textContent = "The Winner Is";
   gameOverDiv.append(gameOver, winner, name, restartBtn);
-  renderGetNamePage();
-  const getNameDiv = document.querySelector(".input-div");
-  document.body.replaceChild(gameOverDiv, getNameDiv);
-  restartBtn.addEventListener("click", () => rerenderGetNamePage());
+  document.body.classList.add("fade");
+  setTimeout(() => {
+    document.body.classList.remove("fade");
+    renderGetNamePage();
+    const getNameDiv = document.querySelector(".input-div");
+    document.body.replaceChild(gameOverDiv, getNameDiv);
+    restartBtn.addEventListener("click", () => rerenderGetNamePage());
+  }, 400);
 }
 
 function restart() {
@@ -41,12 +46,16 @@ function restart() {
 }
 
 function rerenderGetNamePage() {
-  while (document.body.firstChild)
+  document.body.classList.add("fade");
+  setTimeout(() => {
+    document.body.classList.remove("fade");
+    while (document.body.firstChild)
     document.body.removeChild(document.body.firstChild);
   renderGetNamePage();
   resetLengthAndCounter();
   resetPlayerVsComputer();
   resetHumanPlayer();
+  }, 400);
 }
 
 export { renderGetNamePage, restart, announceWinner };

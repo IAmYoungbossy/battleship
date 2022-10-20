@@ -3,9 +3,8 @@ import "./modules/style/style.css";
 
 renderGetNamePage();
 
-document.body.classList.add("fade");
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
-    document.body.classList.remove("fade");
+    document.body.classList.add("opacity");
   }, 400);
 });
