@@ -47,13 +47,13 @@ header {
 
 h1 {
   text-align: center;
-  font-size: 8rem;
+  font-size: min(15vw, 8rem);
   color: #715f36;
   text-shadow: 3px -7px 5px black;
 }
 
 .h1 {
-  font-size: 4rem;
+  font-size: min(15vw, 4rem);
 }
 
 .instruction2 {
@@ -173,7 +173,7 @@ input {
   font-size: xx-large;
   color: cadetblue;
   margin-top: -15px;
-  text-shadow: 0px -5px 5px;
+  text-shadow: 0px -5px 2px black;
 }
 
 .game-over-div {
@@ -190,6 +190,7 @@ input {
   row-gap: 60px;
   margin-top: 5px;
   margin-bottom: 50px;
+  padding: 0 5px;
 }
 
 .container-div1,
@@ -271,6 +272,38 @@ input {
 
 .sunk-ship {
   background-color: blue !important;
+}
+
+.blinking {
+  animation: blinkingBackground 2s infinite;
+}
+
+@keyframes blinkingBackground {
+  0% {
+    color: #004435;
+  }
+
+  25% {
+    color: #ac9dff;
+  }
+
+  50% {
+    color: #137056;
+  }
+
+  70% {
+    color: #ffffff;
+  }
+
+  100% {
+    color: #272063;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .board-container {
+    margin-top: 25px;
+  }
 }
 
 footer {

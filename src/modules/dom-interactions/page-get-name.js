@@ -15,7 +15,7 @@ function renderGetNamePage() {
 
 function announceWinner(playerName) {
   const gameOverDiv = createDomElement("div", { class: "game-over-div" });
-  const gameOver = createDomElement("p", { class: "game-over" });
+  const gameOver = createDomElement("p", { class: "game-over blinking" });
   const winner = createDomElement("p", { class: "winner" });
   const name = createDomElement("p", { class: "name" });
   const restartBtn = createDomElement("button", { class: "btn-restart" });
