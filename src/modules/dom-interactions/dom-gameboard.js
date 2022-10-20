@@ -5,8 +5,8 @@ function createGameboard() {
   const boardContainer = createDomElement("div", { class: "board-container" });
   const containerDiv1 = createDomElement("div", { class: "container-div1" });
   const containerDiv2 = createDomElement("div", { class: "container-div2 hide" });
-  const player1 = createDomElement("p", { class: "player" });
-  const player2 = createDomElement("p", { class: "player2" });
+  const player1 = createDomElement("h3", { class: "player" });
+  const player2 = createDomElement("h3", { class: "player2" });
   const grids = (player, playerGrid) => {
     const square = createDomElement("div", { class: player });
     for (let i = 0; i < 100; i += 1) {

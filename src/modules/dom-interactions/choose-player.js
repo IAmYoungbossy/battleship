@@ -15,14 +15,12 @@ function choosePlayer(playerName) {
   const playHuman = createDomElement("button", { class: "play-human" });
   const instruction = createDomElement("p");
   const alignShipDiv = createDomElement("div", { class: "align-ships" });
-  const instruction2 = createDomElement("p", { class: "instruction2" });
+  const instruction2 = createDomElement("h3", { class: "instruction2" });
   const name = createDomElement("p", { class: "name1" });
   const axisBtn = createDomElement("button", { class: "axis-btn" });
   const continueBtn = createDomElement("button", {
     class: "continue-btn hide",
   });
-  const playName = JSON.parse(localStorage.getItem("playerName"));
-  instruction2.textContent = `${playName}, Place Your Ships.`;
   playAi.textContent = "PLAY AI";
   playHuman.textContent = "PLAY HUMAN";
   axisBtn.textContent = "Horizontal";
@@ -78,6 +76,9 @@ function insertBoard(alignShipDiv, chooseDiv, playerShot) {
     document.body.classList.remove("fade");
     document.body.insertBefore(alignShipDiv, chooseDiv);
     document.body.replaceChild(boardContainer, chooseDiv);
+    const playerName = JSON.parse(localStorage.getItem("playerName"));
+    const instruction2 = document.querySelector(".instruction2");
+    instruction2.textContent = `${playerName}, Place Your Ships.`;
     addHover(".player1-grid");
     addHover(".player2-grid");
     playerShot();

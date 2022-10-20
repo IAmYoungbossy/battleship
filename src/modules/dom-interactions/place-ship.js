@@ -48,9 +48,9 @@ function addBgColor(index, positionShip, board, squares, Arr, instruction2) {
     if (Arr.length === 5 && this === document) showEnemyWater();
     else if (Arr.length === 5) {
       if (this.classList[0] === "player2-grid")
-        instruction2.textContent = "CLICK ON NEXT TO START PLAYING";
+        instruction2.textContent = "Click On Next To Start Playing";
       if (this.classList[0] === "player1-grid")
-        instruction2.textContent = "CLICK ON NEXT TO CONTINUE";
+        instruction2.textContent = "Click On Next To Continue.";
       showEnemy.call(this);
     }
   }
@@ -126,7 +126,7 @@ function showEnemyWater() {
   const containerDiv2 = document.querySelector(".container-div2");
   const { startBtn, instruction } = createPlayBtn();
   addRippleEffect();
-  instruction.textContent = "CLICK PLAY TO START PLAYING";
+  instruction.textContent = "Click Play To Start Game.";
   startBtn.textContent = "Play";
   const showShips = () => {
     startBtn.textContent = "Play";
