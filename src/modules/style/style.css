@@ -185,19 +185,20 @@ input {
   margin: auto;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: space-between;
-  gap: 20px;
+  justify-content: center;
+  align-items: center;
   row-gap: 60px;
-  margin-top: 5px;
+  column-gap: 50px;
+  margin-top: 35px;
   margin-bottom: 50px;
   padding: 0 5px;
 }
 
 .container-div1,
 .container-div2 {
-  margin: auto;
-  width: 430px;
-  height: 430px;
+  /* margin: auto; */
+  width: 380px;
+  height: 380px;
 }
 
 .error-msg {
@@ -208,30 +209,29 @@ input {
 .player,
 .player2 {
   text-align: center;
-  color: #dedaff;
+  color: #a5a1cc;
   font-weight: bolder;
   margin-bottom: 10px;
-  font-family: monospace;
+  font-family: sans-serif;
   text-decoration: underline;
   text-transform: uppercase;
-  text-decoration-line: underline;
+  text-decoration-line: unset;
 }
 
 .player1-board,
 .player2-board {
   backdrop-filter: brightness(0.7);
-  padding: 1px;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   height: 100%;
-  margin: auto;
-  border: 1px solid #f2f2f2;
+  border: 1px solid #1d00ff;
   box-shadow: 7px 5px 9px 2px;
+  background-color: rgb(10 16 64 / 30%);
 }
 
 .player1-grid,
 .player2-grid {
-  border: 1px solid #f8f8f8;
+  border: 1px solid #d7fff4;
 }
 
 .player1-grid:hover,
@@ -309,7 +309,7 @@ button {
     opacity: 1;
     transform: scale(0);
   }
-  to{
+  to {
     transform: scale(4);
     opacity: 0;
   }
@@ -337,9 +337,11 @@ button {
   }
 }
 
-@media screen and (max-width: 800px) {
-  .board-container {
-    margin-top: 25px;
+@media screen and (max-width: 600px) {
+  .container-div1,
+  .container-div2 {
+    width: 300px;
+    height: 300px;
   }
 }
 
