@@ -1,5 +1,6 @@
 import { createDomElement } from "./helper-function";
 
+/** Creates DOM gameboard */
 function createGameboard() {
   const boardContainer = createDomElement("div", { class: "board-container" });
   const containerDiv1 = createDomElement("div", { class: "container-div1" });

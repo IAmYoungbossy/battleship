@@ -59,12 +59,14 @@ function findEmptySpace(arrIndex, ranNum, playerBoard2) {
     firstHit = null;
   }
 }
+
 function removeFromArray(index, expression) {
   if (visitedIndex === index) {
     index2 = expression;
     possibleValidShots.splice(visitedIndex, 1, index2);
   }
 }
+
 function increaseVisitedIndex(playerBoard2) {
   if (
     +index2 < 0 ||

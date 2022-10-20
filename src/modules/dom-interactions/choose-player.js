@@ -6,6 +6,7 @@ import { playerShots } from "./player-vs-computer";
 import { preventEmptyInput } from "./get-player-name";
 import { addHover, resetShipHover } from "./ship-hover";
 
+/** Creates Div container for choosing your opponent. */
 function choosePlayer(playerName) {
   const chooseDiv = createDomElement("div", { class: "choose-div" });
   const btnDiv = createDomElement("div", { class: "btn-div" });
@@ -30,6 +31,26 @@ function choosePlayer(playerName) {
   name.textContent = `Hello ${playerName},`;
   instruction.textContent = "Choose Your Enemy.";
   chooseDiv.append(name, instruction, btnDiv);
+  addListenerToBtn(
+    continueBtn,
+    axisBtn,
+    playAi,
+    alignShipDiv,
+    chooseDiv,
+    playHuman
+  );
+
+  return chooseDiv;
+}
+
+function addListenerToBtn(
+  continueBtn,
+  axisBtn,
+  playAi,
+  alignShipDiv,
+  chooseDiv,
+  playHuman
+) {
   continueBtn.addEventListener("click", resetShipHover);
   const changeAxis = () =>
     (axisBtn.textContent =
@@ -43,8 +64,8 @@ function choosePlayer(playerName) {
     "click",
     player2Name.bind(null, chooseDiv, humanPlayers, alignShipDiv)
   );
-  return chooseDiv;
 }
+
 function insertBoard(alignShipDiv, chooseDiv, playerShot) {
   const header = document.querySelector("h1");
   const head = document.querySelector("header");
@@ -62,6 +83,7 @@ function insertBoard(alignShipDiv, chooseDiv, playerShot) {
     setPlayersName();
   }, 400);
 }
+
 function setPlayersName() {
   const player1 = document.querySelector(".player");
   const player2 = document.querySelector(".player2");
@@ -70,6 +92,7 @@ function setPlayersName() {
   player1.textContent = `Player 1: ${playerName}`;
   player2.textContent = `Player 2: ${playerName2}`;
 }
+
 function player2Name(chooseDiv, playerShot, alignShipDiv) {
   const { inputDiv, startBtn, nameInput } = createInputElem(
     "Enter Human Name",
@@ -85,6 +108,7 @@ function player2Name(chooseDiv, playerShot, alignShipDiv) {
     );
   }, 400);
 }
+
 function player1Board(nameInput, inputDiv, playerShot, alignShipDiv) {
   if (nameInput.value.trim() === "") {
     preventEmptyInput(nameInput);

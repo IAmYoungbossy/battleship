@@ -1,5 +1,7 @@
 /* eslint-disable consistent-return */
 let counter = 0;
+
+/** This function places ships on the gameboard with their length */
 function checkValidMove(num, ship, boardArray) {
   let numCopy = num;
   const domBoardArrray = [];

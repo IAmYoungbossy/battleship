@@ -18,15 +18,8 @@ function showShipsOnBoard(className) {
 
   const addListener = (square, index) => {
     square.addEventListener(
-      "click",
-      addBgColor.bind(
-        this,
-        index,
-        positionShip,
-        board,
-        squares,
-        Arr,
-        instruction2
+      "click", addBgColor.bind(
+        this, index, positionShip, board, squares, Arr, instruction2
       )
     );
   };
@@ -60,7 +53,6 @@ function addBgColor(index, positionShip, board, squares, Arr, instruction2) {
       showEnemy.call(this);
     }
   }
-
   if (Array.from(player1.classList).includes("hide")) return;
   if (Array.from(player2.classList).includes("hide")) return;
   if (Arr.length === 5 && this !== document) {
@@ -71,6 +63,7 @@ function addBgColor(index, positionShip, board, squares, Arr, instruction2) {
   }
 }
 
+/** Function gets called when you choose to play human */
 function showEnemy() {
   const playerName = JSON.parse(localStorage.getItem("player2Name"));
   const instruction2 = document.querySelector(".instruction2");
@@ -124,6 +117,7 @@ function showEnemy() {
     continueBtn.addEventListener("click", showShips2);
 }
 
+/** Function gets called when you choose to play against Computer */
 function showEnemyWater() {
   const player = document.querySelector(".player2-board");
   const containerDiv2 = document.querySelector(".container-div2");
