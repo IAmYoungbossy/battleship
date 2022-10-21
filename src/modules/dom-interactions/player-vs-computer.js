@@ -84,8 +84,9 @@ function resetPlayerVsComputer() {
   time = 0;
   stopHere = 0;
 }
-
+/** Add comment */
 function setStopHere() {
+  stopHere = 1;
   stopHere = 1;
 }
 
