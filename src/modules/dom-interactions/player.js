@@ -1,5 +1,6 @@
 import { showShipsOnBoard } from "./place-ship";
-import { stopHere, validShots } from "./player-vs-computer";
+import { stopHere } from "./player-vs-computer";
+import { validShots } from "./valid-hit";
 
 let count = 0;
 let count2 = 0;
@@ -12,8 +13,7 @@ function player(className) {
     playerBoard[0],
     className
   );
-  const addListenerToGrid = (grid, index) =>
-    grid.addEventListener(
+  const addListenerToGrid = (grid, index) => grid.addEventListener(
       "click",
       shots.bind(
         null,

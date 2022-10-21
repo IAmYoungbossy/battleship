@@ -1,4 +1,4 @@
-import { hit, isSunkShipArray } from "./player-vs-computer";
+import { hit, isSunkShipArr } from "./player-vs-computer";
 
 let index2;
 let visitedIndex = null;
@@ -52,7 +52,7 @@ function findEmptySpace(arrIndex, ranNum, playerBoard2) {
     increaseVisitedIndex(playerBoard2);
     visitedIndex++;
   }
-  if (isSunkShipArray && isSunkShipArray.includes(true)) {
+  if (isSunkShipArr && isSunkShipArr.includes(true)) {
     possibleValidShots.splice(0);
     index2 = arrIndex[ranNum];
     visitedIndex = null;
