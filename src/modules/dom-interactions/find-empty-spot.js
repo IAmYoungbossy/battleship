@@ -53,7 +53,7 @@ function findEmptySpace(arrIndex, ranNum, playerBoard2) {
     visitedIndex++;
   }
   if (isSunkShipArr && isSunkShipArr.includes(true)) {
-    possibleValidShots.splice(0);
+    possibleValidShots = [];
     index2 = arrIndex[ranNum];
     visitedIndex = null;
     firstHit = null;
@@ -63,7 +63,7 @@ function findEmptySpace(arrIndex, ranNum, playerBoard2) {
 function removeFromArray(index, expression) {
   if (visitedIndex === index) {
     index2 = expression;
-    possibleValidShots.splice(visitedIndex, 1, index2);
+    possibleValidShots.splice(index, 1, index2);
   }
 }
 
