@@ -311,6 +311,7 @@ button {
     opacity: 0;
   }
 }
+
 @keyframes blinkingBackground {
   0% {
     color: #004435;
@@ -329,9 +330,10 @@ button {
   }
 
   100% {
-    color: #272064;
+    color: #272063;
   }
 }
+
 @media screen and (max-width: 600px) {
 
   .container-div1,
