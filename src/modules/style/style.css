@@ -63,7 +63,7 @@ h1 {
 .game-over-div {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -87,6 +87,8 @@ h1 {
 label {
   font-size: xx-large;
   color: aquamarine;
+  color: #9cdfffde;
+  font-variant: unicase;
 }
 
 input {
@@ -120,7 +122,8 @@ input {
 .choose-div>p {
   font-size: 2rem;
   text-transform: capitalize;
-  color: aquamarine;
+  color: #9cdfffde;
+  font-variant: unicase;
 }
 
 .btn-div {
@@ -138,6 +141,7 @@ input {
 .start-btn {
   width: 110px;
   padding: 15px 0;
+  margin-top: 15px;
   font-weight: bolder;
 }
 
@@ -186,7 +190,7 @@ input {
   align-items: center;
   row-gap: 60px;
   column-gap: 50px;
-  margin-bottom: 50px;
+  margin-bottom: 100px;
   padding: 0 5px;
 }
 
@@ -208,10 +212,10 @@ input {
   color: #a5a1cc;
   font-weight: bolder;
   margin-bottom: 10px;
-  font-family: sans-serif;
   text-decoration: underline;
   text-transform: capitalize;
   text-decoration-line: unset;
+  font-variant: unicase;
 }
 
 .player1-board,
@@ -259,15 +263,16 @@ input {
 
 .shots {
   border-radius: 40px;
-  background-color: white !important;
+  border-color: black;
+  background-color: #f79e85c4 !important;
 }
 
 .valid-shot {
-  background-color: red !important;
+  background-color: #ff0000ba !important;
 }
 
 .sunk-ship {
-  background-color: blue !important;
+  background-color: #3c53f1a6 !important;
 }
 
 .blinking {
