@@ -81,6 +81,7 @@ h1 {
 .align-ships {
   text-align: center;
   position: relative;
+  margin-bottom: 25px;
 }
 
 label {
@@ -185,7 +186,6 @@ input {
   align-items: center;
   row-gap: 60px;
   column-gap: 50px;
-  margin-top: 25px;
   margin-bottom: 50px;
   padding: 0 5px;
 }
