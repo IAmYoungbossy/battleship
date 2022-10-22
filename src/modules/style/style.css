@@ -94,6 +94,8 @@ label {
 input {
   padding: 15px;
   border-radius: 10px;
+  outline: none;
+  border: none;
 }
 
 .second-input {
@@ -241,10 +243,12 @@ input {
 
 .red:hover {
   background-color: red;
+  border-color: black !important;
 }
 
 .grey {
   background-color: rgb(255, 183, 183) !important;
+  border-color: black !important;
 }
 
 .hide {
@@ -259,6 +263,7 @@ input {
 
 .ship {
   background-color: #00ffff70 !important;
+  border-color: #00000099 !important;
 }
 
 .shots {
@@ -273,6 +278,20 @@ input {
 
 .sunk-ship {
   background-color: #3c53f1a6 !important;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #112233;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #112233;
+  border-radius: 20px;
+  border: 1px solid bisque;
 }
 
 .blinking {
