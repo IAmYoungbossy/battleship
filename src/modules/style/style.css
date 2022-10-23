@@ -98,6 +98,15 @@ input {
   border: none;
 }
 
+input:focus {
+  border: 1px solid purple;
+  background-color: #ffbbbb;
+}
+
+input:hover {
+  background-color: #dadada;
+}
+
 .second-input {
   position: relative;
 }
