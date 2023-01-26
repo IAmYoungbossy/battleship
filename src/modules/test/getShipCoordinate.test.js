@@ -1,19 +1,19 @@
 /* eslint-disable no-undef */
-import {shipCoordinates} from "../getShipCoordinates";
+import {getShipCoordinates} from "../getShipCoordinates";
 
-test("shipCoordinates([0, 0], 5, 'X') should return [[0,0], [0, 1], [0, 2], [0, 3], [0, 4]] coordinates", () => {
-  expect(shipCoordinates([0, 0], 5, "X")).toEqual([
-    [0, 0],
-    [0, 1],
-    [0, 2],
-    [0, 3],
-    [0, 4],
-  ]);
-  expect(shipCoordinates([0, 0], 5, "Y")).toEqual([
-    [0, 0],
-    [1, 0],
-    [2, 0],
-    [3, 0],
-    [4, 0],
-  ]);
+describe("getShipCoordinates", () => {
+  test("returns the correct coordinates for a ship placed horizontally", () => {
+    const result = getShipCoordinates([0, 0], 3, "X");
+    expect(result).toEqual([[0, 0], [0, 1], [0, 2]]);
+  });
+
+  test("returns the correct coordinates for a ship placed vertically", () => {
+    const result = getShipCoordinates([1, 2], 4, "Y");
+    expect(result).toEqual([[1, 2], [2, 2], [3, 2], [4, 2]]);
+  });
+
+  test("returns false if the input array is not valid", () => {
+    const result = getShipCoordinates([], 4, "Y");
+    expect(result).toBe(false);
+  });
 });
